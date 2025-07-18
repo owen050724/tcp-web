@@ -39,7 +39,7 @@ function About() {
       ],
       activities: [
         { name: '인제 MT', type: 'event' },
-        { name: '오픈소스 개발', 'type': 'project' },
+        { name: '오픈소스 개발', type: 'project' },
         { name: '웹 개발 스터디', type: 'study' },
         { name: '창업 경진대회', type: 'competition' },
       ],
