@@ -1,13 +1,359 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+    --primary-black: #0a0a0a;
+    --secondary-gray: #1a1a1a;
+    --light-gray: #2a2a2a;
+    --accent-blue: #a8c5e6;
+    --accent-purple: #c5a8e6;
+    --accent-green: #a8e6c5;
+    --accent-pink: #e6a8c5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    background-color: var(--primary-black);
+    color: #ffffff;
+}
+
+.orbitron {
+    font-family: 'Orbitron', monospace;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(168, 197, 230, 0.2);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(168, 197, 230, 0.3);
+}
+
+.feature-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.promo-placeholder {
+    background: linear-gradient(135deg, var(--light-gray), var(--secondary-gray));
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accordion Styles */
+.accordion-item {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+    border-color: rgba(168, 197, 230, 0.3);
+}
+
+.accordion-header {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header:hover {
+    background: linear-gradient(135deg, var(--light-gray), var(--secondary-gray));
+}
+
+.accordion-header.active {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: var(--primary-black);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(42, 42, 42, 0.5);
+}
+
+.accordion-content.active {
+    max-height: 1000px; /* 충분히 큰 값으로 설정하여 내용이 잘리지 않도록 합니다. */
+}
+
+.accordion-body {
+    padding: 20px;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-icon.rotate {
+    transform: rotate(180deg);
+}
+
+/* Stat Card Styles */
+.stat-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(168, 197, 230, 0.2);
+}
+
+/* Activity Tag Styles */
+.activity-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 4px;
+}
+
+.tag-competition {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+
+.tag-study {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+.tag-project {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+}
+
+.tag-event {
+    background: rgba(168, 85, 247, 0.2);
+    color: #d8b4fe;
+}
+
+.tag-achievement {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fde68a;
+}
+
+/* Member Card Styles */
+.member-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+.member-card:hover::before {
+    transform: translateY(0);
+}
+
+.member-card .img-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    background-image: linear-gradient(var(--secondary-gray), var(--secondary-gray)), linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    margin-bottom: 1rem;
+}
+
+.member-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* 기본적으로 숨김. React에서 isModalOpen 상태로 제어 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center; /* Flexbox 속성으로 중앙 정렬 */
+    align-items: center;    /* Flexbox 속성으로 중앙 정렬 */
+}
+
+/* React에서 isModalOpen이 true일 때 'active' 클래스를 조건부로 추가하여 display: flex를 만듭니다. */
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh; /* 모달이 화면을 넘지 않도록 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    position: relative;
+    animation: fadeInScale 0.3s ease-out; /* 모달 열릴 때 애니메이션 */
+}
+
+/* Modal Open Animation */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(168, 197, 230, 0.2);
+}
+
+.form-input::placeholder {
+    color: #9ca3af; /* placeholder 색상 추가 */
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--accent-blue); /* 체크박스 색상 */
+}
+
+.required::after {
+    content: ' *';
+    color: #ef4444; /* Tailwind red-500 */
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--accent-blue);
+}
+
+.achievement-card {
+    background: linear-gradient(135deg, rgba(168, 197, 230, 0.1), rgba(197, 168, 230, 0.1));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
 }
