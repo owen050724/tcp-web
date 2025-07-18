@@ -357,3 +357,217 @@ body {
     padding: 1.5rem;
     margin-bottom: 1rem;
 }
+
+/* Announcement Item Styles */
+.announcement-item {
+    background: var(--secondary-gray);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.announcement-item:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(168, 197, 230, 0.15);
+}
+
+/* Study Item Styles */
+.study-item {
+    background: var(--secondary-gray);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer; /* 클릭 가능하도록 커서 변경 */
+}
+
+.study-item:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(168, 197, 230, 0.15);
+}
+
+/* Tag Styles (Study 페이지 전용) */
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 9999px; /* Tailwind's rounded-full */
+    font-size: 0.75rem; /* Tailwind's text-xs */
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Study Page Specific Tag Colors */
+.tag-blue { background-color: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+.tag-purple { background-color: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+.tag-green { background-color: rgba(34, 197, 94, 0.2); color: #86efac; }
+.tag-yellow { background-color: rgba(245, 158, 11, 0.2); color: #fde68a; }
+.tag-red { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+/* Recruitment Card Styles */
+.recruitment-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+.recruitment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(168, 197, 230, 0.2);
+}
+
+/* Login Page Specific Styles */
+.login-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* 로그인 카드 뒷 배경 블러 효과 */
+}
+
+.input-field {
+    background: rgba(42, 42, 42, 0.5); /* light-gray의 50% 투명도 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(168, 197, 230, 0.1);
+}
+
+.input-field::placeholder {
+    color: #9ca3af; /* Tailwind gray-400 */
+}
+
+.login-button {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(168, 197, 230, 0.3);
+}
+
+.secondary-link {
+    color: #9ca3af; /* Tailwind gray-400 */
+    transition: color 0.3s ease;
+}
+
+.secondary-link:hover {
+    color: var(--accent-blue);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox:checked {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-color: var(--accent-blue);
+}
+
+/* ----- register Page----- */
+.input-group { position: relative; }
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af; /* gray-400 */
+}
+.password-toggle:hover { color: #d1d5db; /* gray-300 */ }
+
+.validation-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slide-down {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.slide-down.show { max-height: 300px; /* 충분히 큰 값으로 설정 */ }
+
+.btn-disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-enabled { opacity: 1; cursor: pointer; }
+
+.success-icon { color: #10b981; } /* Tailwind green-500 */
+.error-icon { color: #ef4444; }   /* Tailwind red-500 */
+
+.loading-spinner {
+    border: 2px solid #374151; /* gray-700 */
+    border-top: 2px solid var(--accent-purple); /* accent-purple */
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Sidebar Styles */
+/* AdminDashboard */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, var(--secondary-gray), var(--primary-black));
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 100;
+        height: 100%;
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    color: #cbd5e1; /* gray-300 */
+    border-radius: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+.sidebar-link:hover {
+    background-color: rgba(168, 197, 230, 0.1);
+    color: #ffffff;
+}
+.sidebar-link i {
+    width: 1.5rem; /* w-6 */
+    text-align: center;
+}
+
+/* Widget Card Styles */
+.widget-card {
+    background: linear-gradient(135deg, var(--secondary-gray), var(--light-gray));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.progress-bar {
+    background-color: var(--light-gray);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+.progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 9999px;
+}

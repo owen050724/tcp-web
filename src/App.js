@@ -10,6 +10,11 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Members from './pages/Members';
 import Recruitment from './pages/Recruitment';
+import Announcement from './pages/Announcement';
+import Study from './pages/Study';
+import Team from './pages/Team';
+import Login from './pages/Login';
+import Register from './pages/Register'; // 회원가입 페이지 임포트
 
 function App() {
   // Header background on scroll 로직은 App.js에 그대로 둡니다.
@@ -43,15 +48,11 @@ function App() {
           <Route path="/about" element={<About />} /> {/* About 페이지 */} 
           <Route path="/members" element={<Members />} /> {/* Members 페이지 */}
           <Route path="/recruitment" element={<Recruitment />} /> {/* Recruitment 페이지 */}
-          {/* 다른 페이지들의 라우트도 여기에 추가될 예정입니다. */}
-          {/* <Route path="/about" element={<About />} /> */}
-          {/* <Route path="/members" element={<Members />} /> */}
-          {/* <Route path="/recruitment" element={<Recruitment />} /> */}
-          {/* <Route path="/announcement" element={<Announcement />} /> */}
-          {/* <Route path="/study" element={<Study />} /> */}
-          {/* <Route path="/team" element={<Team />} /> */}
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/register" element={<Register />} /> */}
+          <Route path="/announcement" element={<Announcement />} /> {/* Announcement 페이지 */}
+          <Route path="/study" element={<Study />} /> {/* Study 페이지 */}
+          <Route path="/team" element={<Team />} /> {/* Find Your Team 페이지 */}
+          <Route path="/login" element={<Login />} /> {/* Login 페이지 */}
+          <Route path="/register" element={<Register />} /> {/* Register 페이지 */}
         </Routes>
 
         <Footer /> {/* 모든 페이지에 공통으로 나타나는 푸터 */}
