@@ -323,9 +323,12 @@ function Study() {
             {filteredStudies.length > 0 ? (
               filteredStudies.map((study, index) => (
                 <div key={index} className="study-item p-6 rounded-xl card-hover scroll-fade" onClick={() => openStudyModal(study)}>
-                  <h3 className="orbitron text-xl font-bold mb-2 text-white">{study.title}</h3>
-                  <p className="text-gray-400 mb-2">{study.period}</p>
-                  <p className="text-sm text-gray-500">{study.description.substring(0, 80)}...</p>
+                  {/* 제목 텍스트 왼쪽 정렬 */}
+                  <h3 className="orbitron text-xl font-bold mb-2 text-white text-left">{study.title}</h3>
+                  {/* 기간 텍스트 왼쪽 정렬 */}
+                  <p className="text-gray-400 mb-2 text-left">{study.period}</p>
+                  {/* 설명 텍스트 왼쪽 정렬 */}
+                  <p className="text-sm text-gray-500 text-left">{study.description.substring(0, 80)}...</p>
                   <div className="flex flex-wrap mt-3">
                     {study.tags.map((tag, tagIndex) => (
                       <span key={tagIndex} className={`tag ${getTagClassName(tag)}`}>{tag}</span>
@@ -350,16 +353,16 @@ function Study() {
             <button className="close-modal" onClick={closeStudyModal}>
               <i className="fas fa-times"></i>
             </button>
-            <h3 id="modal-study-title" className="orbitron text-2xl font-bold gradient-text mb-4">{selectedStudy.title}</h3>
+            <h3 id="modal-study-title" className="orbitron text-2xl font-bold gradient-text mb-4 text-left">{selectedStudy.title}</h3> {/* 모달 제목 왼쪽 정렬 */}
             <div className="space-y-3 text-gray-300">
-              <p><strong className="text-white">기간:</strong> <span id="modal-study-duration">{selectedStudy.period}</span></p>
-              <p><strong className="text-white">진행 방식:</strong> <span id="modal-study-method">{selectedStudy.method}</span></p>
-              <p><strong className="text-white">장소:</strong> <span id="modal-study-location">{selectedStudy.location}</span></p>
-              <p><strong className="text-white">참여 인원:</strong> <span id="modal-study-members">{selectedStudy.members}</span></p>
-              <p><strong className="text-white">기술 스택:</strong> <span id="modal-study-techstack">{selectedStudy.techstack}</span></p>
-              <p className="pt-2"><strong className="text-white">설명:</strong> <span id="modal-study-description" className="block mt-1 text-gray-400">{selectedStudy.description}</span></p>
+              <p className="text-left"><strong className="text-white">기간:</strong> <span id="modal-study-duration">{selectedStudy.period}</span></p> {/* 모달 내용 왼쪽 정렬 */}
+              <p className="text-left"><strong className="text-white">진행 방식:</strong> <span id="modal-study-method">{selectedStudy.method}</span></p> {/* 모달 내용 왼쪽 정렬 */}
+              <p className="text-left"><strong className="text-white">장소:</strong> <span id="modal-study-location">{selectedStudy.location}</span></p> {/* 모달 내용 왼쪽 정렬 */}
+              <p className="text-left"><strong className="text-white">참여 인원:</strong> <span id="modal-study-members">{selectedStudy.members}</span></p> {/* 모달 내용 왼쪽 정렬 */}
+              <p className="text-left"><strong className="text-white">기술 스택:</strong> <span id="modal-study-techstack">{selectedStudy.techstack}</span></p> {/* 모달 내용 왼쪽 정렬 */}
+              <p className="pt-2 text-left"><strong className="text-white">설명:</strong> <span id="modal-study-description" className="block mt-1 text-gray-400">{selectedStudy.description}</span></p> {/* 모달 내용 왼쪽 정렬 */}
             </div>
-            <div id="modal-study-tags" className="flex flex-wrap mt-4">
+            <div id="modal-study-tags" className="flex flex-wrap mt-4 text-left"> {/* 모달 태그 왼쪽 정렬 */}
               {selectedStudy.tags.map((tag, tagIndex) => (
                 <span key={tagIndex} className={`tag ${getTagClassName(tag)}`}>{tag}</span>
               ))}

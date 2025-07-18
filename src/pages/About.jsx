@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'; // useState 임포트 확인
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트 추가
 import logo from '../logo.svg'; // src 폴더에 있는 logo.svg를 상대 경로로 임포트
 
 function About() {
@@ -10,7 +11,7 @@ function About() {
     {
       year: 2024,
       tag: '24',
-      gradient: 'from-blue-500 to-purple-500',
+      gradientClass: 'gradient-blue-purple', // 새로운 CSS 클래스 이름으로 변경
       title: '2024년',
       subtitle: '시스템 혁신 및 규모 확장의 해',
       achievements: [
@@ -28,7 +29,7 @@ function About() {
     {
       year: 2023,
       tag: '23',
-      gradient: 'from-green-500 to-blue-500',
+      gradientClass: 'gradient-green-blue', // 새로운 CSS 클래스 이름으로 변경
       title: '2023년',
       subtitle: '팀워크 강화 및 네트워킹 확대',
       achievements: [
@@ -38,7 +39,7 @@ function About() {
       ],
       activities: [
         { name: '인제 MT', type: 'event' },
-        { name: '오픈소스 개발', type: 'project' },
+        { name: '오픈소스 개발', 'type': 'project' },
         { name: '웹 개발 스터디', type: 'study' },
         { name: '창업 경진대회', type: 'competition' },
       ],
@@ -46,7 +47,7 @@ function About() {
     {
       year: 2022,
       tag: '22',
-      gradient: 'from-yellow-500 to-red-500',
+      gradientClass: 'gradient-yellow-red', // 새로운 CSS 클래스 이름으로 변경
       title: '2022년',
       subtitle: '대외활동 확장 및 수상 성과',
       achievements: [
@@ -64,7 +65,7 @@ function About() {
     {
       year: 2021,
       tag: '21',
-      gradient: 'from-purple-500 to-pink-500',
+      gradientClass: 'gradient-purple-pink', // 새로운 CSS 클래스 이름으로 변경
       title: '2021년',
       subtitle: 'TCP 창립 및 기반 구축',
       achievements: [
@@ -193,22 +194,25 @@ function About() {
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Excellence (탁월함)</h4>
-                    <p className="text-gray-400 text-sm">최고 수준의 코드 품질과 개발 역량 추구</p>
+                    {/* "탁월함" h4 태그 왼쪽 정렬 */}
+                    <h4 className="font-semibold mb-1 text-left">Excellence (탁월함)</h4>
+                    <p className="text-gray-400 text-sm text-left">최고 수준의 코드 품질과 개발 역량 추구</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Collaboration (협력)</h4>
-                    <p className="text-gray-400 text-sm">팀워크를 통한 시너지 효과 극대화</p>
+                    {/* "협력" h4 태그 왼쪽 정렬 */}
+                    <h4 className="font-semibold mb-1 text-left">Collaboration (협력)</h4>
+                    <p className="text-gray-400 text-sm text-left">팀워크를 통한 시너지 효과 극대화</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Innovation (혁신)</h4>
-                    <p className="text-gray-400 text-sm">새로운 기술과 아이디어를 통한 지속적 발전</p>
+                    {/* "혁신" h4 태그 왼쪽 정렬 */}
+                    <h4 className="font-semibold mb-1 text-left">Innovation (혁신)</h4>
+                    <p className="text-gray-400 text-sm text-left">새로운 기술과 아이디어를 통한 지속적 발전</p>
                   </div>
                 </li>
               </ul>
@@ -217,7 +221,8 @@ function About() {
             <div className="scroll-fade">
               <h3 className="orbitron text-2xl font-bold mb-6 text-purple-300">TCP의 미션</h3>
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl">
-                <p className="text-gray-300 leading-relaxed">
+                {/* "TCP의 미션" p 태그 왼쪽 정렬 */}
+                <p className="text-gray-300 leading-relaxed text-left">
                   TCP는 기술적 탁월성과 창의적 엔지니어링 프로젝트에 중점을 두는 엘리트 소규모 대학 개발자 동아리입니다.
                   우리는 실제 소프트웨어 및 하드웨어 개발을 통해 실무 경험을 쌓고, 업계 선도 기업으로의 진출을 목표로 합니다.
                 </p>
@@ -284,6 +289,7 @@ function About() {
           </div>
 
           <div className="max-w-4xl mx-auto">
+            {/* 각 아코디언 항목의 닫힘 태그를 명확히 확인합니다. */}
             {historyData.map((data, index) => (
               <div className="accordion-item" key={data.year}>
                 <div
@@ -291,12 +297,12 @@ function About() {
                   onClick={() => toggleAccordion(index)}
                 >
                   <div className="flex items-center space-x-4">
-                    <div
-                      className={`w-12 h-12 bg-gradient-to-br ${data.gradient} rounded-full flex items-center justify-center`}
-                    >
-                      <span className="orbitron font-bold text-white">{data.tag}</span>
+                    {/* 연도 숫자를 포함하는 div에 Tailwind gradient 클래스 적용 */}
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${data.gradientClass}`}>
+                      <span className="orbitron font-bold text-white text-left">{data.tag}</span> {/* text-left 추가 */}
                     </div>
-                    <div>
+                    {/* 연도 제목 (h3)과 부제목 (p)을 포함하는 div에 text-left 추가 */}
+                    <div className="text-left">
                       <h3 className="orbitron text-xl font-bold">{data.title}</h3>
                       <p className="text-sm text-gray-400">{data.subtitle}</p>
                     </div>
@@ -329,7 +335,8 @@ function About() {
                         </ul>
                       </div>
                       <div>
-                        <h4 className={`font-semibold mb-3 ${data.year === 2024 ? 'text-purple-300' : data.year === 2023 ? 'text-blue-300' : data.year === 2022 ? 'text-red-300' : 'text-pink-300'}`}>주요 활동</h4>
+                        {/* 주요 활동 h4 태그 색상 변경 로직 유지, text-left 추가 */}
+                        <h4 className="font-semibold mb-3 text-left" style={{ color: data.year === 2024 ? 'var(--accent-purple)' : data.year === 2023 ? 'var(--accent-blue)' : data.year === 2022 ? 'var(--accent-pink)' : 'var(--accent-green)' }}>주요 활동</h4>
                         <div className="flex flex-wrap gap-2">
                           {data.activities.map((activity, i) => (
                             <span key={i} className={`activity-tag tag-${activity.type}`}>
@@ -356,11 +363,11 @@ function About() {
             <p className="text-xl text-gray-200 mb-8">
               뛰어난 동료들과 함께 성장하고, 실무 경험을 쌓으며, 개발자로서의 꿈을 현실로 만들어보세요.
             </p>
-            {/* 이 부분은 React Router의 Link 컴포넌트로 변경해야 합니다. */}
-            <a href="recruitment.html" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
+            {/* Link 컴포넌트로 변경 */}
+            <Link to="/recruitment" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
               <i className="fas fa-users mr-2"></i>
               지금 지원하기
-            </a>
+            </Link>
             <p className="text-sm text-gray-300 mt-4">
               * 지원 기간: 매 학기 시작 2주 전 ~ 개강 후 1주
             </p>

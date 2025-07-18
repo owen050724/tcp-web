@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; // useState 추가
 import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트 (Footer에도 추가할 수 있음)
-import logo from '../logo.svg'; // src 폴더에 있는 logo.svg를 상대 경로로 임포트
+// import logo from '../logo.svg'; // 이 페이지에서 직접 logo.svg를 사용하지는 않습니다.
 
 function Recruitment() {
   // 모달의 열림/닫힘 상태를 관리하는 state
@@ -200,7 +200,8 @@ function Recruitment() {
               <h3 className="orbitron text-2xl font-bold mb-6 text-center text-purple-300">2024 스터디 활동</h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="feature-card p-6 rounded-2xl">
-                  <h4 className="orbitron font-bold text-lg mb-4 text-blue-300">기술 스터디</h4>
+                  {/* "기술 스터디" h4 태그 왼쪽 정렬 */}
+                  <h4 className="orbitron font-bold text-lg mb-4 text-blue-300 text-left">기술 스터디</h4>
                   <ul className="space-y-2 text-gray-300">
                     <li className="flex items-center space-x-2">
                       <i className="fas fa-code text-blue-400"></i>
@@ -221,7 +222,8 @@ function Recruitment() {
                   </ul>
                 </div>
                 <div className="feature-card p-6 rounded-2xl">
-                  <h4 className="orbitron font-bold text-lg mb-4 text-green-300">프로젝트 기반 학습</h4>
+                  {/* "프로젝트 기반 학습" h4 태그 왼쪽 정렬 */}
+                  <h4 className="orbitron font-bold text-lg mb-4 text-green-300 text-left">프로젝트 기반 학습</h4>
                   <ul className="space-y-2 text-gray-300">
                     <li className="flex items-center space-x-2">
                       <i className="fas fa-users text-blue-400"></i>
@@ -269,58 +271,69 @@ function Recruitment() {
               <h2 className="orbitron text-2xl font-bold gradient-text mb-6 text-center">TCP 지원서</h2>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name" className="form-label required">이름</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="name" className="form-label required text-left">이름</label>
                   <input type="text" id="name" name="name" className="form-input" required />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="studentId" className="form-label required">학번</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="studentId" className="form-label required text-left">학번</label>
                   <input type="text" id="studentId" name="studentId" className="form-input" required />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="major" className="form-label required">학과/전공</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="major" className="form-label required text-left">학과/전공</label>
                   <input type="text" id="major" name="major" className="form-input" required />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="phone" className="form-label required">전화번호</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="phone" className="form-label required text-left">전화번호</label>
                   <input type="tel" id="phone" name="phone" className="form-input" required />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="techStack" className="form-label">기술 스택</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="techStack" className="form-label text-left">기술 스택</label>
                   <input type="text" id="techStack" name="techStack" className="form-input" placeholder="예: Python, JavaScript, React, Node.js" />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="awards" className="form-label">수상 경력</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="awards" className="form-label text-left">수상 경력</label>
                   <textarea id="awards" name="awards" className="form-input form-textarea" placeholder="프로그래밍 대회, 해커톤, 창업 경진대회 등의 수상 경력을 작성해주세요"></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="projectExperience" className="form-label">프로젝트 경험</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="projectExperience" className="form-label text-left">프로젝트 경험</label>
                   <textarea id="projectExperience" name="projectExperience" className="form-input form-textarea" placeholder="개인 프로젝트, 팀 프로젝트, 오픈소스 기여 등의 경험을 작성해주세요"></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="interests" className="form-label required">관심 분야</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="interests" className="form-label required text-left">관심 분야</label>
                   <textarea id="interests" name="interests" className="form-input form-textarea" placeholder="웹 개발, 모바일 앱, AI/ML, 게임 개발 등 관심 있는 분야를 작성해주세요" required></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="selfIntroduction" className="form-label required">자기소개</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="selfIntroduction" className="form-label required text-left">자기소개</label>
                   <textarea id="selfIntroduction" name="selfIntroduction" className="form-input form-textarea" placeholder="자신의 성격, 장점, 개발에 대한 열정 등을 자유롭게 작성해주세요" required></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="expectations" className="form-label required">TCP에 대한 기대</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="expectations" className="form-label required text-left">TCP에 대한 기대</label>
                   <textarea id="expectations" name="expectations" className="form-input form-textarea" placeholder="TCP에서 무엇을 배우고 경험하고 싶은지, 어떤 기여를 할 수 있는지 작성해주세요" required></textarea>
                 </div>
                 
                 <div className="checkbox-container">
                   <input type="checkbox" id="privacyAgreement" name="privacyAgreement" required />
-                  <label htmlFor="privacyAgreement" className="text-sm text-gray-300">개인정보 수집 및 이용에 동의합니다.</label>
+                  {/* 레이블 텍스트 왼쪽 정렬 */}
+                  <label htmlFor="privacyAgreement" className="text-sm text-gray-300 text-left">개인정보 수집 및 이용에 동의합니다.</label>
                 </div>
                 
                 <button type="submit" className="w-full cta-button py-3 rounded-lg font-bold orbitron text-white hover:text-black transition-colors">

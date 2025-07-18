@@ -571,3 +571,39 @@ body {
     background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
     border-radius: 9999px;
 }
+
+/* About Page Specific Styles */
+/* Custom Gradients for About Page Accordion Years */
+.gradient-blue-purple {
+    background: linear-gradient(135deg, #60A5FA, #A78BFA); /* from-blue-500 to-purple-500 */
+}
+.gradient-green-blue {
+    background: linear-gradient(135deg, #34D399, #60A5FA); /* from-green-500 to-blue-500 */
+}
+.gradient-yellow-red {
+    background: linear-gradient(135deg, #FACC15, #EF4444); /* from-yellow-500 to-red-500 */
+}
+.gradient-purple-pink {
+    background: linear-gradient(135deg, #A78BFA, #EC4899); /* from-purple-500 to-pink-500 */
+}
+
+/* 기존 .nav-link 스타일 아래에 추가 */
+
+/* New active state for nav-link */
+.nav-link.active {
+    color: #ffffff; /* 텍스트를 흰색으로 */
+}
+
+/* 활성 상태일 때 밑줄도 100% 나오도록 설정 */
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* 기존 nav-link에 text-gray-300이 기본으로 적용되어 있으므로, 
+   active 클래스가 있을 때는 text-gray-300을 오버라이드해야 합니다.
+   이를 위해 조건부 클래스 적용 시 'active'를 먼저, 'text-gray-300'을 나중에 배치합니다. */
+/* Header.jsx에서 Link 컴포넌트의 className을 다음과 같이 수정합니다:
+   className={`nav-link orbitron text-sm font-medium ${isActive('/about') ? 'active' : 'text-gray-300'} hover:text-white`}
+   이렇게 하면 active일 때만 'active' 클래스가 추가되고, 아닐 때만 'text-gray-300'이 적용됩니다.
+   active 클래스에 color: #ffffff가 직접 정의되어 있으므로 문제없이 작동합니다.
+*/

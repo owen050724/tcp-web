@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트
 import logo from '../logo.svg'; // src 폴더의 logo.svg를 상대 경로로 임포트
 
 function Home() {
-  // Home 컴포넌트 내부에서 스크롤 애니메이션과 헤더 배경 변경 로직을 처리합니다.
-  // 이 로직은 Home 페이지에만 특화된 것이므로 Home 컴포넌트 안에 두는 것이 좋습니다.
-  // 만약 모든 페이지에 걸쳐 헤더 배경 변경 로직이 필요하다면 App.js로 다시 옮길 수 있습니다.
   useEffect(() => {
-    // Scroll animations
+    // Scroll animations (for .scroll-fade elements within this page)
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -16,7 +14,7 @@ function Home() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); // 한 번 보이면 더 이상 관찰 안 함
         }
       });
     }, observerOptions);
@@ -26,12 +24,7 @@ function Home() {
       observer.observe(el);
     });
 
-    // Header background on scroll
-    // Home.jsx 안에서 Header의 스크롤 배경 변경을 직접 조작하는 것은 React 컴포넌트의 책임을 넘어서는 일이 될 수 있습니다.
-    // 이는 전역적인 동작이므로, Header 컴포넌트 자체 내부에 두거나 App.js (가장 상위 레이아웃)에 두는 것이 더 적합합니다.
-    // 여기서는 일단 Home 컴포넌트가 로드될 때 헤더를 초기화하는 용도로만 남겨두겠습니다.
-    // 전체 페이지에 공통적으로 적용될 Header 스크롤 효과는 App.js에 그대로 두겠습니다.
-
+    // 컴포넌트 언마운트 시 클린업
     return () => {
       observer.disconnect(); // 옵저버 연결 해제
     };
@@ -104,22 +97,25 @@ function Home() {
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Excellence (탁월함)</h4>
-                    <p className="text-gray-400 text-sm">최고 수준의 코드 품질과 개발 역량 추구</p>
+                    {/* "탁월함" h4 태그 왼쪽 정렬 - text-left 추가 */}
+                    <h4 className="font-semibold mb-1 text-left">Excellence (탁월함)</h4>
+                    <p className="text-gray-400 text-sm text-left">최고 수준의 코드 품질과 개발 역량 추구</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Collaboration (협력)</h4>
-                    <p className="text-gray-400 text-sm">팀워크를 통한 시너지 효과 극대화</p>
+                    {/* "협력" h4 태그 왼쪽 정렬 - text-left 추가 */}
+                    <h4 className="font-semibold mb-1 text-left">Collaboration (협력)</h4>
+                    <p className="text-gray-400 text-sm text-left">팀워크를 통한 시너지 효과 극대화</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <i className="fas fa-check-circle text-green-400 mt-1"></i>
                   <div>
-                    <h4 className="font-semibold mb-1">Innovation (혁신)</h4>
-                    <p className="text-gray-400 text-sm">새로운 기술과 아이디어를 통한 지속적 발전</p>
+                    {/* "혁신" h4 태그 왼쪽 정렬 - text-left 추가 */}
+                    <h4 className="font-semibold mb-1 text-left">Innovation (혁신)</h4>
+                    <p className="text-gray-400 text-sm text-left">새로운 기술과 아이디어를 통한 지속적 발전</p>
                   </div>
                 </li>
               </ul>
@@ -173,7 +169,8 @@ function Home() {
                 </div>
                 <div className="p-6">
                   <h3 className="orbitron text-xl font-bold mb-3 text-yellow-300">대회 참가</h3>
-                  <p className="text-gray-400 mb-4">
+                  {/* 설명 텍스트 왼쪽 정렬 */}
+                  <p className="text-gray-400 mb-4 text-left">
                     프로그래밍 대회, 해커톤, 창업 경진대회 등 다양한 대회에 참가하여 실력을 겨루고 경험을 쌓습니다.
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -197,7 +194,8 @@ function Home() {
                 </div>
                 <div className="p-6">
                   <h3 className="orbitron text-xl font-bold mb-3 text-blue-300">스터디 세션</h3>
-                  <p className="text-gray-400 mb-4">
+                  {/* 설명 텍스트 왼쪽 정렬 */}
+                  <p className="text-gray-400 mb-4 text-left">
                     알고리즘, 웹 개발, 인공지능 등 다양한 주제의 정기 스터디를 통해 체계적으로 학습합니다.
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -221,7 +219,8 @@ function Home() {
                 </div>
                 <div className="p-6">
                   <h3 className="orbitron text-xl font-bold mb-3 text-green-300">멤버십 트레이닝</h3>
-                  <p className="text-gray-400 mb-4">
+                  {/* 설명 텍스트 왼쪽 정렬 */}
+                  <p className="text-gray-400 mb-4 text-left">
                     팀 빌딩, 네트워킹, 집중 코딩 캠프 등을 통해 동아리 구성원들과의 유대감을 형성합니다.
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -246,10 +245,11 @@ function Home() {
             <p className="text-xl text-gray-200 mb-8">
               뛰어난 동료들과 함께 성장하고, 실무 경험을 쌓으며, 개발자로서의 꿈을 현실로 만들어보세요.
             </p>
-            <a href="recruitment.html" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
+            {/* Link 컴포넌트로 변경 */}
+            <Link to="/recruitment" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
               <i className="fas fa-users mr-2"></i>
               지금 지원하기
-            </a>
+            </Link>
             <p className="text-sm text-gray-300 mt-4">
               * 지원 기간: 매 학기 시작 2주 전 ~ 개강 후 1주
             </p>

@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+// logo.svg는 이 페이지에서 직접 사용되지 않지만, 다른 페이지와 일관성을 위해 임포트할 수 있습니다.
+// import logo from '../logo.svg'; 
 
 function Announcement() {
   useEffect(() => {
@@ -60,46 +62,58 @@ function Announcement() {
           <div className="space-y-6">
             <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
                 <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-xl text-blue-300">2025년 2학기 신입 부원 모집 안내</h3>
+                    {/* 제목 텍스트 왼쪽 정렬 */}
+                    <h3 className="font-bold text-xl text-blue-300 text-left">2025년 2학기 신입 부원 모집 안내</h3>
                     <span className="text-sm text-gray-400">2025-07-01</span>
                 </div>
-                <p className="text-gray-300 mb-2">
+                {/* 내용 텍스트 왼쪽 정렬 */}
+                <p className="text-gray-300 mb-2 text-left">
                     다가오는 2학기 신입 부원을 모집합니다. 자세한 내용은 링크를 참고해주세요.
                 </p>
-                <div className="text-sm text-gray-500">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
+                {/* 작성자 텍스트 왼쪽 정렬 */}
+                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
             </a>
 
             <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
                 <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-xl text-purple-300">정기 스터디 개설 및 참여 독려</h3>
+                    {/* 제목 텍스트 왼쪽 정렬 */}
+                    <h3 className="font-bold text-xl text-purple-300 text-left">정기 스터디 개설 및 참여 독려</h3>
                     <span className="text-sm text-gray-400">2025-06-25</span>
                 </div>
-                <p className="text-gray-300 mb-2">
+                {/* 내용 텍스트 왼쪽 정렬 */}
+                <p className="text-gray-300 mb-2 text-left">
                     하반기 정기 스터디를 개설합니다. 적극적인 참여와 새로운 스터디 제안을 부탁드립니다.
                 </p>
-                <div className="text-sm text-gray-500">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
+                {/* 작성자 텍스트 왼쪽 정렬 */}
+                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
             </a>
 
             <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
                 <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-xl text-green-300">제1회 TCP 해커톤 개최 공고</h3>
+                    {/* 제목 텍스트 왼쪽 정렬 */}
+                    <h3 className="font-bold text-xl text-green-300 text-left">제1회 TCP 해커톤 개최 공고</h3>
                     <span className="text-sm text-gray-400">2025-06-18</span>
                 </div>
-                <p className="text-gray-300 mb-2">
+                {/* 내용 텍스트 왼쪽 정렬 */}
+                <p className="text-gray-300 mb-2 text-left">
                     TCP 첫 해커톤이 개최됩니다. 많은 관심과 참여 바랍니다.
                 </p>
-                <div className="text-sm text-gray-500">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
+                {/* 작성자 텍스트 왼쪽 정렬 */}
+                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
             </a>
 
             <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
                 <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-xl text-pink-300">동아리실 이용 수칙 안내</h3>
+                    {/* 제목 텍스트 왼쪽 정렬 */}
+                    <h3 className="font-bold text-xl text-pink-300 text-left">동아리실 이용 수칙 안내</h3>
                     <span className="text-sm text-gray-400">2025-06-10</span>
                 </div>
-                <p className="text-gray-300 mb-2">
+                {/* 내용 텍스트 왼쪽 정렬 */}
+                <p className="text-gray-300 mb-2 text-left">
                     동아리실 이용에 대한 새로운 수칙이 적용되니 확인하시고 협조 부탁드립니다.
                 </p>
-                <div className="text-sm text-gray-500">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
+                {/* 작성자 텍스트 왼쪽 정렬 */}
+                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
             </a>
           </div>
 

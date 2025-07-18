@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 
 function Register() {
-  // 입력 필드 상태 관리
+  // 폼 입력 필드 상태 관리
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
-  // 'name' 대신 'userFullName'으로 변경하여 전역 변수 충돌 방지
-  const [userFullName, setUserFullName] = useState(''); 
-  const [tcpMemberFullName, setTcpMemberFullName] = useState(''); // TCP 부원용 이름 (기존 fullName 유지)
+  // const [userFullName, setUserFullName] = useState(''); // 일반 사용자용 '이름' 상태 제거
+  const [tcpMemberFullName, setTcpMemberFullName] = useState(''); // TCP 부원용 이름
   const [phoneNumber, setPhoneNumber] = useState(''); // TCP 부원용 전화번호
 
   // 비밀번호 가시성 상태
@@ -74,7 +73,8 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !password || !email || !userFullName) { // userFullName 포함
+    // 필수 항목 검사 (일반 사용자 '이름' 필드 제거에 따라 수정)
+    if (!username || !password || !email) {
       alert('모든 필수 항목을 입력해주세요.');
       return;
     }
@@ -112,7 +112,13 @@ function Register() {
         alert('입력하신 정보와 일치하는 TCP 회원을 찾을 수 없습니다. 정보를 다시 확인해주세요.');
         return;
       }
+    } else { // TCP 부원이 아니라면, tcpMemberFullName과 phoneNumber는 필수가 아님
+        // 일반 회원가입 시에는 이름과 전화번호가 필수가 아니므로,
+        // 이 부분에 대한 별도 유효성 검사는 필요 없습니다.
+        // 만약 일반 회원도 이름이 필수라면, 별도의 userFullName 상태를 유지해야 합니다.
+        // 현재는 TCP 부원일 때만 이름/전화번호를 받으므로 이대로 진행합니다.
     }
+
 
     if (!termsAgreed) {
         alert('이용약관 및 개인정보처리방침에 동의해야 합니다.');
@@ -133,8 +139,9 @@ function Register() {
       // 데모를 위한 폼 초기화
       setUsername('');
       setPassword('');
+      setConfirmPassword(''); // confirmPassword 초기화 추가
       setEmail('');
-      setUserFullName(''); // userFullName 초기화
+      // setUserFullName(''); // userFullName 초기화 제거
       setTcpMemberFullName(''); // tcpMemberFullName 초기화
       setPhoneNumber('');
       setShowPassword(false);
@@ -190,7 +197,7 @@ function Register() {
                   </div>
                 </div>
                 {usernameMessage && (
-                  <div id="usernameMessage" className={`text-sm mt-1 ${usernameAvailability === 'available' ? 'text-green-400' : 'text-red-500'}`}>
+                  <div id="usernameMessage" className={`text-sm mt-1 ${usernameAvailability === 'available' ? 'text-green-400' : 'text-red-500'} text-left`}>
                     {usernameMessage}
                   </div>
                 )}
@@ -215,7 +222,7 @@ function Register() {
                     onClick={togglePasswordVisibility}
                   ></i>
                 </div>
-                <div className="text-sm text-gray-500 mt-1">8자 이상, 영문, 숫자, 특수문자를 포함해야 합니다</div>
+                <div className="text-sm text-gray-500 mt-1 text-left">8자 이상, 영문, 숫자, 특수문자를 포함해야 합니다</div>
               </div>
 
               {/* Confirm Password Input */}
@@ -250,14 +257,14 @@ function Register() {
                 />
               </div>
 
-              {/* General User Full Name Input (Not TCP Member specific) */}
-              <div>
+              {/* General User Full Name Input (제거됨) */}
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 text-left" htmlFor="userFullName">이름</label>
                 <div className="relative">
                   <input
                     type="text"
                     id="userFullName"
-                    className="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-400"
+                    className="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 pr-10"
                     placeholder="실명을 입력하세요"
                     value={userFullName}
                     onChange={(e) => setUserFullName(e.target.value)}
@@ -265,7 +272,7 @@ function Register() {
                   />
                   <i className="fas fa-signature absolute right-3 top-3.5 text-gray-400"></i>
                 </div>
-              </div>
+              </div> */}
 
               {/* TCP Member Checkbox */}
               <div>
@@ -290,12 +297,12 @@ function Register() {
                       <label htmlFor="tcpMemberFullName" className="block text-sm font-medium text-gray-300 mb-1 text-left">이름</label>
                       <input
                         type="text"
-                        id="tcpMemberFullName" // id 변경
-                        name="tcpMemberFullName" // name 변경
+                        id="tcpMemberFullName"
+                        name="tcpMemberFullName"
                         className="w-full px-3 py-2 bg-transparent border border-gray-600 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         placeholder="실명을 입력하세요"
                         value={tcpMemberFullName}
-                        onChange={(e) => setTcpMemberFullName(e.target.value)} // setter 변경
+                        onChange={(e) => setTcpMemberFullName(e.target.value)}
                       />
                     </div>
                     <div>

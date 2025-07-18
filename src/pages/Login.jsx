@@ -74,7 +74,8 @@ function Login() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Username Input */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2" htmlFor="username">아이디</label>
+                  {/* "아이디" 레이블 왼쪽 정렬 */}
+                  <label className="block text-sm font-medium text-gray-300 mb-2 text-left" htmlFor="username">아이디</label>
                   <div className="relative">
                     <input 
                       type="text" 
@@ -91,7 +92,8 @@ function Login() {
 
                 {/* Password Input */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2" htmlFor="password">비밀번호</label>
+                  {/* "비밀번호" 레이블 왼쪽 정렬 */}
+                  <label className="block text-sm font-medium text-gray-300 mb-2 text-left" htmlFor="password">비밀번호</label>
                   <div className="relative">
                     <input 
                       type="password" 

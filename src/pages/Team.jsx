@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import logo from '../logo.svg'; // 이 페이지에서 logo.svg를 직접 사용하지는 않습니다.
 
 function Team() {
   // 모집 게시글 데이터 (dummy data from original HTML)
@@ -194,9 +195,12 @@ function Team() {
             >
               <img src={card.image} alt={card.title} className="w-full h-40 object-cover" />
               <div className="p-6">
-                <span className={`text-xs font-semibold mb-2 block ${card.status === '모집완료' ? 'text-gray-500' : 'text-accent-blue'}`}>{card.type}</span>
-                <h3 className={`orbitron text-xl font-bold mb-3 ${card.status === '모집완료' ? 'text-gray-500' : ''}`}>{card.title}</h3>
-                <div className={`text-sm space-y-2 mb-4 ${card.status === '모집완료' ? 'text-gray-500' : 'text-gray-400'}`}>
+                {/* 유형 텍스트 왼쪽 정렬 */}
+                <span className={`text-xs font-semibold mb-2 block ${card.status === '모집완료' ? 'text-gray-500' : 'text-accent-blue'} text-left`}>{card.type}</span>
+                {/* 제목 텍스트 왼쪽 정렬 */}
+                <h3 className={`orbitron text-xl font-bold mb-3 ${card.status === '모집완료' ? 'text-gray-500' : ''} text-left`}>{card.title}</h3>
+                {/* 역할, 일정, 설명 텍스트 왼쪽 정렬 */}
+                <div className={`text-sm space-y-2 mb-4 ${card.status === '모집완료' ? 'text-gray-500' : 'text-gray-400'} text-left`}>
                   <p><i className="fas fa-users mr-2 w-4 text-center"></i><strong className={`${card.status === '모집완료' ? 'text-gray-400' : 'text-gray-300'}`}>필요 역할:</strong> {card.rolesNeeded.join(', ')}</p>
                   <p><i className="fas fa-calendar-alt mr-2 w-4 text-center"></i><strong className={`${card.status === '모집완료' ? 'text-gray-400' : 'text-gray-300'}`}>일정:</strong> {card.schedule}</p>
                   <p><i className="fas fa-info-circle mr-2 w-4 text-center"></i>{card.description}</p>
@@ -208,7 +212,8 @@ function Team() {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between items-center">
+                {/* 마감 정보 텍스트 왼쪽 정렬 (justify-between으로 인해 span 자체는 왼쪽 끝에 위치) */}
+                <div className="flex justify-between items-center text-left">
                   <span className={`text-xs ${card.status === '모집완료' ? 'text-gray-500' : 'text-red-400'}`}>
                     {card.status === '모집완료' ? '모집 완료' : `마감: ${card.deadline}`}
                   </span>
