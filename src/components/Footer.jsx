@@ -52,7 +52,8 @@ function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-left"> {/* 이 div에 text-left 추가 */}
                 <i className="fab fa-instagram text-pink-400"></i>
-                <a href="#" className="hover:text-pink-300 transition-colors">@seoultech.tcp</a>
+                {/* Instagram 링크 수정 */}
+                <a href="https://www.instagram.com/seoultech.tcp?igsh=MTNpOG9wM201d3BhcA==" target="_blank" rel="noopener noreferrer" className="hover:text-pink-300 transition-colors">@seoultech.tcp</a>
               </div>
             </div>
           </div>
