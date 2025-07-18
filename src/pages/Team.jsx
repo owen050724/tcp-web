@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import logo from '../logo.svg'; // 이 페이지에서 logo.svg를 직접 사용하지는 않습니다.
 
 function Team() {
   // 모집 게시글 데이터 (dummy data from original HTML)

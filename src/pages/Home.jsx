@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트
-import logo from '../logo.svg'; // src 폴더의 logo.svg를 상대 경로로 임포트
+import { Link } from 'react-router-dom';
+import logo from '../logo.svg';
 
 function Home() {
   useEffect(() => {
-    // Scroll animations (for .scroll-fade elements within this page)
+    // 스크롤 애니메이션
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -14,12 +14,12 @@ function Home() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // 한 번 보이면 더 이상 관찰 안 함
+          observer.unobserve(entry.target); // 한 번 실행 후 정지
         }
       });
     }, observerOptions);
 
-    // .scroll-fade 클래스를 가진 모든 요소를 찾아서 관찰합니다.
+    // .scroll-fade 클래스
     document.querySelectorAll('.scroll-fade').forEach(el => {
       observer.observe(el);
     });
@@ -31,7 +31,7 @@ function Home() {
   }, []);
 
   return (
-    <> {/* React Fragment를 사용하여 여러 요소를 묶습니다. */}
+    <> {/* React Fragment 요소 묶기 */}
       {/* Hero Section */}
       <section className="pt-24 pb-16 min-h-screen flex items-center">
         <div className="container mx-auto px-4">
@@ -49,7 +49,7 @@ function Home() {
               </p>
             </div>
 
-            {/* Highlight Messages */}
+            {/* 하이라이트 메세지 */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               <div className="feature-card p-6 rounded-xl card-hover">
                 <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
@@ -79,7 +79,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Introduction Section */}
+      {/* 소개 세션 */}
       <section id="about" className="py-16 bg-gradient-to-b from-transparent to-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -148,7 +148,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Promotional Activities Section */}
+      {/* TCP 활동 소개 세션 */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -182,7 +182,7 @@ function Home() {
               </div>
             </div>
 
-            {/* Study Sessions */}
+            {/* 스터디 소개 세션 */}
             <div className="scroll-fade">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden card-hover">
                 <div className="promo-placeholder">
@@ -207,7 +207,7 @@ function Home() {
               </div>
             </div>
 
-            {/* MT Events */}
+            {/* MT 세션 */}
             <div className="scroll-fade">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden card-hover">
                 <div className="promo-placeholder">
@@ -245,7 +245,7 @@ function Home() {
             <p className="text-xl text-gray-200 mb-8">
               뛰어난 동료들과 함께 성장하고, 실무 경험을 쌓으며, 개발자로서의 꿈을 현실로 만들어보세요.
             </p>
-            {/* Link 컴포넌트로 변경 */}
+            {}
             <Link to="/recruitment" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
               <i className="fas fa-users mr-2"></i>
               지금 지원하기

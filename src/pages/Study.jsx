@@ -212,7 +212,7 @@ function Study() {
       });
     }, observerOptions);
 
-    // .scroll-fade 클래스를 가진 모든 요소를 찾아서 관찰합니다.
+    // .scroll-fade 클래스를 가진 모든 요소를 찾아서 관찰
     const scrollFadeElements = document.querySelectorAll('.scroll-fade');
     scrollFadeElements.forEach((el) => {
       observer.observe(el);

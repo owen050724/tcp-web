@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-// logo.svg는 이 페이지에서 직접 사용되지 않지만, 다른 페이지와 일관성을 위해 임포트할 수 있습니다.
-// import logo from '../logo.svg'; 
 
 function Announcement() {
   useEffect(() => {
-    // Scroll animations (for .scroll-fade elements within this page)
+    // IntersectionObserver를 사용하여 스크롤 시 요소가 보일 때 애니메이션 추가
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
@@ -27,8 +25,8 @@ function Announcement() {
     return () => {
       observer.disconnect(); // IntersectionObserver 연결 해제
     };
-  }, []); // 빈 배열을 두어 컴포넌트가 처음 마운트될 때 한 번만 실행되도록 합니다.
-
+  }, []); // 빈 배열을 두어 컴포넌트 마운트 시 한 번만 실행
+  
   return (
     <>
       <section className="pt-24 pb-16 min-h-screen flex items-center">

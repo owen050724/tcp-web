@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트 추가
-import logo from '../logo.svg'; // src 폴더에 있는 logo.svg를 상대 경로로 임포트
+import { Link } from 'react-router-dom';
+import logo from '../logo.svg';
 
 function About() {
-  // 현재 열려있는 아코디언의 인덱스를 관리하는 상태
-  const [openAccordion, setOpenAccordion] = useState(0); // 첫 번째 아코디언을 기본으로 열어둡니다.
+  // 아코디언 인덱스 상태 관리
+  const [openAccordion, setOpenAccordion] = useState(0); // 첫 번째 아코디언 실행
 
   // 연도별 활동 히스토리 데이터
   const historyData = [
     {
       year: 2024,
       tag: '24',
-      gradientClass: 'gradient-blue-purple', // 새로운 CSS 클래스 이름으로 변경
+      gradientClass: 'gradient-blue-purple', // 새로운 CSS 클래스로 변경
       title: '2024년',
       subtitle: '시스템 혁신 및 규모 확장의 해',
       achievements: [
@@ -29,7 +29,7 @@ function About() {
     {
       year: 2023,
       tag: '23',
-      gradientClass: 'gradient-green-blue', // 새로운 CSS 클래스 이름으로 변경
+      gradientClass: 'gradient-green-blue', // 새로운 CSS 클래스로 변경
       title: '2023년',
       subtitle: '팀워크 강화 및 네트워킹 확대',
       achievements: [
@@ -47,7 +47,7 @@ function About() {
     {
       year: 2022,
       tag: '22',
-      gradientClass: 'gradient-yellow-red', // 새로운 CSS 클래스 이름으로 변경
+      gradientClass: 'gradient-yellow-red', // 새로운 CSS 클래스로 변경
       title: '2022년',
       subtitle: '대외활동 확장 및 수상 성과',
       achievements: [
@@ -65,7 +65,7 @@ function About() {
     {
       year: 2021,
       tag: '21',
-      gradientClass: 'gradient-purple-pink', // 새로운 CSS 클래스 이름으로 변경
+      gradientClass: 'gradient-purple-pink', // 새로운 CSS 클래스로 변경
       title: '2021년',
       subtitle: 'TCP 창립 및 기반 구축',
       achievements: [
@@ -83,7 +83,7 @@ function About() {
   ];
 
   useEffect(() => {
-    // Scroll animations (for .scroll-fade elements within this page)
+    // 스크롤 페이드 인 애니메이션
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
@@ -93,7 +93,7 @@ function About() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // 한 번 보이면 더 이상 관찰 안 함
+          observer.unobserve(entry.target); // 한 번 실행 후 관찰 해제
         }
       });
     }, observerOptions);
@@ -102,9 +102,9 @@ function About() {
       observer.observe(el);
     });
 
-    // Counter Up Animation
+    // 카운트 업 애니메이션
     const counterObserverOptions = {
-      threshold: 0.5, // Trigger when 50% of the element is visible
+      threshold: 0.5, // 카운터 애니매이션 시작 임계값
     };
 
     const counterObserver = new IntersectionObserver((entries, observerInstance) => {
@@ -118,7 +118,7 @@ function About() {
           if (isNaN(target)) return;
 
           let startTime = null;
-          const duration = 2000; // Animation duration in ms
+          const duration = 2000; // 애니메이션 지속 시간
 
           const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
@@ -130,12 +130,12 @@ function About() {
             if (progress < duration) {
               requestAnimationFrame(animate);
             } else {
-              counter.textContent = originalText; // Set to the final exact text
+              counter.textContent = originalText; // 애니메이션 완료 후 원래 텍스트로 복원
             }
           };
 
           requestAnimationFrame(animate);
-          observerInstance.unobserve(counter); // Stop observing once the animation has been triggered
+          observerInstance.unobserve(counter); // 한 번 실행 후 관찰 해제
         }
       });
     }, counterObserverOptions);
@@ -149,7 +149,7 @@ function About() {
       observer.disconnect(); // IntersectionObserver 연결 해제
       counterObserver.disconnect(); // Counter IntersectionObserver 연결 해제
     };
-  }, []); // 빈 배열을 두어 컴포넌트가 처음 마운트될 때 한 번만 실행되도록 합니다.
+  }, []); // 빈 배열을 의존성으로 설정하여 컴포넌트가 마운트될 때만 실행
 
   // 아코디언 토글 함수 (React State를 활용)
   const toggleAccordion = (index) => {
@@ -289,7 +289,7 @@ function About() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            {/* 각 아코디언 항목의 닫힘 태그를 명확히 확인합니다. */}
+            {/* 아코디언 컴포넌트 */}
             {historyData.map((data, index) => (
               <div className="accordion-item" key={data.year}>
                 <div
@@ -363,7 +363,7 @@ function About() {
             <p className="text-xl text-gray-200 mb-8">
               뛰어난 동료들과 함께 성장하고, 실무 경험을 쌓으며, 개발자로서의 꿈을 현실로 만들어보세요.
             </p>
-            {/* Link 컴포넌트로 변경 */}
+            {}
             <Link to="/recruitment" className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
               <i className="fas fa-users mr-2"></i>
               지금 지원하기

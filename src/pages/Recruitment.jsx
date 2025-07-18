@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'; // useState 추가
-import { Link } from 'react-router-dom'; // Link 컴포넌트 임포트 (Footer에도 추가할 수 있음)
-// import logo from '../logo.svg'; // 이 페이지에서 직접 logo.svg를 사용하지는 않습니다.
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Recruitment() {
   // 모달의 열림/닫힘 상태를 관리하는 state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // Scroll animations (for .scroll-fade elements within this page)
+    // 스크롤 이벤트에 따라 요소가 뷰포트에 들어오면 애니메이션을 적용하기 위한 IntersectionObserver 설정
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
@@ -30,7 +29,7 @@ function Recruitment() {
     return () => {
       observer.disconnect(); // IntersectionObserver 연결 해제
     };
-  }, []); // 빈 배열을 두어 컴포넌트가 처음 마운트될 때 한 번만 실행되도록 합니다.
+  }, []); // 빈 배열을 두어 컴포넌트가 처음 마운트 시 한 번만 실행
 
   // 모달 열기 함수
   const openModal = () => {
@@ -49,13 +48,13 @@ function Recruitment() {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
     // 개인정보 동의 체크 여부 확인
-    const privacyAgreement = document.getElementById('privacyAgreement'); // React에서는 useRef를 사용하는 것이 더 바람직하지만, 여기서는 HTML ID를 그대로 사용합니다.
+    const privacyAgreement = document.getElementById('privacyAgreement'); // React에서는 useRef를 사용하는 것이 권장됨, 여기서는 HTML ID를 그대로 사용
     if (!privacyAgreement.checked) {
       alert('개인정보 수집 및 이용에 동의해주세요.');
       return;
     }
 
-    // 폼 데이터 수집 (실제 앱에서는 이 데이터를 서버로 전송합니다)
+    // 폼 데이터 수집
     const formData = new FormData(e.target);
     const data = {};
     for (let [key, value] of formData.entries()) {
@@ -97,7 +96,7 @@ function Recruitment() {
         </div>
       </section>
 
-      {/* About TCP Section */}
+      {/* About TCP 세션 */}
       <section id="about" className="py-16 bg-gradient-to-b from-transparent to-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -114,7 +113,7 @@ function Recruitment() {
         </div>
       </section>
 
-      {/* Who Should Apply Section */}
+      {/* 지원자 세션 */}
       <section id="who-should-apply" className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -147,7 +146,7 @@ function Recruitment() {
         </div>
       </section>
 
-      {/* What We Do Section */}
+      {/* TCP 활동 세션 */}
       <section id="what-we-do" className="py-16 bg-gradient-to-b from-transparent to-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -155,7 +154,7 @@ function Recruitment() {
           </div>
           
           <div className="max-w-6xl mx-auto">
-            {/* 2024 Achievements */}
+            {/* 2024 성과 */}
             <div className="mb-12 scroll-fade">
               <h3 className="orbitron text-2xl font-bold mb-6 text-center text-blue-300">2024 주요 성과</h3>
               <div className="grid md:grid-cols-3 gap-6">
@@ -195,7 +194,7 @@ function Recruitment() {
               </div>
             </div>
             
-            {/* 2024 Study Activities */}
+            {/* 2024 스터디 활동 */}
             <div className="scroll-fade">
               <h3 className="orbitron text-2xl font-bold mb-6 text-center text-purple-300">2024 스터디 활동</h3>
               <div className="grid md:grid-cols-2 gap-8">
@@ -247,7 +246,7 @@ function Recruitment() {
             </div>
           </div>
           
-          {/* Apply Now Button */}
+          {/* 지원 버튼 */}
           <div className="text-center mt-12">
             <button id="sectionApplyBtn" onClick={openModal} className="cta-button px-12 py-4 rounded-full text-lg font-bold orbitron text-white hover:text-black transition-colors">
               <i className="fas fa-rocket mr-2"></i>
@@ -260,7 +259,7 @@ function Recruitment() {
         </div>
       </section>
 
-      {/* Application Modal */}
+      {/* 지원서 모달 */}
       {isModalOpen && ( // isModalOpen 상태가 true일 때만 렌더링
         <div id="applicationModal" className="modal active" onClick={(e) => e.target.id === 'applicationModal' && closeModal()}>
           <div className="modal-content">

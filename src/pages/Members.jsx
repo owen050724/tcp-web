@@ -1,31 +1,27 @@
 import React, { useEffect } from 'react';
-import logo from '../logo.svg'; // src 폴더에 있는 logo.svg를 상대 경로로 임포트
+import logo from '../logo.svg';
 
 function Members() {
   useEffect(() => {
-    // Scroll animations (for .scroll-fade elements within this page)
+    // 스크롤 이벤트에 따라 요소가 뷰포트에 들어오면 애니메이션을 적용하기 위한 IntersectionObserver 설정
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
     };
 
-    // IntersectionObserver 인스턴스를 하나만 생성합니다.
+    // IntersectionObserver 인스턴스 생성
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          // 요소가 한 번 'visible' 상태가 되면 더 이상 관찰할 필요가 없다면 아래 줄을 유지합니다.
-          // 하지만 만약 스크롤을 올렸다가 다시 내릴 때 애니메이션이 재실행되길 원한다면 이 줄을 제거해야 합니다.
+          // 요소가 뷰포트에 들어왔을 때 'visible' 클래스를 추가하여 애니메이션을 실행
           observer.unobserve(entry.target); 
         } else {
-          // 요소가 뷰포트에서 벗어났을 때 'visible' 클래스를 제거하여 애니메이션을 재실행할 수 있도록 합니다.
-          // 만약 애니메이션이 한 번만 실행되고 싶다면 이 else 블록을 제거합니다.
-          // entry.target.classList.remove('visible'); 
         }
       });
     }, observerOptions);
 
-    // 모든 .scroll-fade 요소를 찾아서 관찰합니다.
+    // 모든 .scroll-fade 요소 관찰
     const scrollFadeElements = document.querySelectorAll('.scroll-fade');
     scrollFadeElements.forEach((el) => {
       observer.observe(el);
@@ -33,10 +29,10 @@ function Members() {
 
     // 컴포넌트 언마운트 시 클린업
     return () => {
-      // 컴포넌트가 언마운트될 때 모든 관찰을 중지합니다.
+      // 컴포넌트가 언마운트될 때 모든 관찰을 중지
       observer.disconnect(); 
     };
-  }, []); // 빈 배열을 두어 컴포넌트가 처음 마운트될 때 한 번만 실행되도록 합니다.
+  }, []); // 빈 배열을 두어 컴포넌트 마운트 시 한 번만 실행
 
   return (
     <>
