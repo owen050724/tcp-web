@@ -19,7 +19,7 @@ function Footer() {
             {/* p 태그에 text-left 추가 (혹시 모를 상속 문제 방지) */}
             <p className="text-sm text-gray-400 text-left">
               Team Crazy Performance<br />
-              컴퓨터공학 동아리
+              컴퓨터공학과 학술 동아리
             </p>
           </div>
 
@@ -29,10 +29,10 @@ function Footer() {
             <h4 className="orbitron text-lg font-bold mb-4 text-white text-left">임원진</h4>
             <div className="space-y-2 text-sm text-gray-400">
               <div className="text-left"> {/* 이 div에 text-left 추가 */}
-                <span className="text-blue-300">회장:</span> 김TCP
+                <span className="text-blue-300">회장:</span> 컴퓨터공학과 24학번 박연오
               </div>
               <div className="text-left"> {/* 이 div에 text-left 추가 */}
-                <span className="text-purple-300">부회장:</span> 이Performance
+                <span className="text-purple-300">부회장:</span> 컴퓨터공학과 23학번 김영진
               </div>
             </div>
           </div>
@@ -44,15 +44,15 @@ function Footer() {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-center space-x-2 text-left"> {/* 이 div에 text-left 추가 */}
                 <i className="fas fa-phone text-blue-400"></i>
-                <span>010-1234-5678</span>
+                <span>010-5096-3236</span>
               </div>
               <div className="flex items-center space-x-2 text-left"> {/* 이 div에 text-left 추가 */}
                 <i className="fas fa-envelope text-purple-400"></i>
-                <span>tcp@university.ac.kr</span>
+                <span>seoultechcstcp@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2 text-left"> {/* 이 div에 text-left 추가 */}
                 <i className="fab fa-instagram text-pink-400"></i>
-                <a href="#" className="hover:text-pink-300 transition-colors">@tcp_official</a>
+                <a href="#" className="hover:text-pink-300 transition-colors">@seoultech.tcp</a>
               </div>
             </div>
           </div>
