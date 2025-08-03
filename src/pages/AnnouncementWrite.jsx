@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../logo.svg';
-import DOMPurify from 'dompurify'; // XSS 방지를 위한 라이브러리 임포트 (설치 필요: npm install dompurify)
-import markdownit from 'markdown-it'; // 마크다운 렌더링을 위한 라이브러리 (설치 필요: npm install markdown-it)
+import DOMPurify from 'dompurify';
+import markdownit from 'markdown-it';
 
 const md = markdownit();
 
@@ -15,7 +15,7 @@ function AnnouncementWrite() {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('관리자'); // 작성자는 고정 값
+  const [author, setAuthor] = useState('관리자');
   
   // 모달 상태 관리
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
@@ -27,11 +27,9 @@ function AnnouncementWrite() {
 
   // 컴포넌트 마운트 시 초기 설정
   useEffect(() => {
-    // 오늘 날짜로 초기화
     const today = new Date().toISOString().split('T')[0];
     setDate(today);
 
-    // 임시 저장된 데이터 복원
     const savedDraft = localStorage.getItem('announcement_draft');
     if (savedDraft) {
       if (window.confirm('임시저장된 글이 있습니다. 불러오시겠습니까?')) {
@@ -88,7 +86,6 @@ function AnnouncementWrite() {
     const newValue = textarea.value.substring(0, start) + formattedText + textarea.value.substring(end);
     setContent(newValue);
     textarea.focus();
-    // 커서 위치 재설정
     setTimeout(() => textarea.setSelectionRange(start + formattedText.length, start + formattedText.length), 0);
   };
   
@@ -98,7 +95,6 @@ function AnnouncementWrite() {
     const newValue = textarea.value.substring(0, start) + text + textarea.value.substring(start);
     setContent(newValue);
     textarea.focus();
-    // 커서 위치 재설정
     setTimeout(() => textarea.setSelectionRange(start + text.length, start + text.length), 0);
   };
 
@@ -116,7 +112,6 @@ function AnnouncementWrite() {
     const formData = { title, content, category, date, timestamp: new Date().toISOString() };
     localStorage.setItem('announcement_draft', JSON.stringify(formData));
     
-    // 임시저장 알림
     alert('임시 저장되었습니다.');
   };
 
@@ -129,10 +124,6 @@ function AnnouncementWrite() {
     }
     
     // 제출 시뮬레이션
-    // 실제로는 여기에 API 호출을 통한 백엔드 저장 로직이 들어갑니다.
-    // ...
-    
-    // 성공 시
     localStorage.removeItem('announcement_draft');
     setIsSuccessModalOpen(true);
   };
@@ -148,7 +139,6 @@ function AnnouncementWrite() {
   };
   
   const renderPreviewContent = () => {
-    // 마크다운을 HTML로 변환하고, XSS 방지를 위해 DOMPurify 적용
     const safeHtml = DOMPurify.sanitize(md.render(content));
     return (
       <>
@@ -179,7 +169,7 @@ function AnnouncementWrite() {
     <main className="pt-20 pb-16 min-h-screen">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* 페이지 헤더 */}
-        <div className="mb-8">
+        <div className="mb-8 flex justify-start"> {/* flex와 justify-start 추가 */}
           <Link to="/announcement" className="btn-secondary inline-flex items-center px-6 py-3 rounded-lg text-sm font-medium text-white">
             <i className="fas fa-arrow-left mr-2"></i>공지사항 목록으로 돌아가기
           </Link>
@@ -236,7 +226,6 @@ function AnnouncementWrite() {
                 </div>
               ))}
             </div>
-            {/* hidden input은 React 상태로 대체 가능하지만, 기존 HTML 구조 유지를 위해 남겨둠 */}
             <input type="hidden" id="selectedCategory" name="category" value={category} />
           </div>
 
