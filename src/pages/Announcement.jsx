@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
 
 function Announcement() {
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
   useEffect(() => {
     // IntersectionObserver를 사용하여 스크롤 시 요소가 보일 때 애니메이션 추가
     const observerOptions = {
@@ -27,6 +30,11 @@ function Announcement() {
     };
   }, []); // 빈 배열을 두어 컴포넌트 마운트 시 한 번만 실행
   
+  // "글쓰기" 버튼 클릭 핸들러
+  const handleWriteClick = () => {
+    navigate('/announcement/write'); // AnnouncementWrite 페이지로 이동
+  };
+
   return (
     <>
       <section className="pt-24 pb-16 min-h-screen flex items-center">
@@ -52,7 +60,11 @@ function Announcement() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="orbitron text-3xl md:text-4xl font-bold gradient-text">공지사항</h2>
-            <button className="cta-button px-6 py-2 rounded-lg text-sm font-bold text-white hover:text-black transition-colors">
+            {/* "글쓰기" 버튼에 onClick 핸들러 추가 */}
+            <button
+              className="cta-button px-6 py-2 rounded-lg text-sm font-bold text-white hover:text-black transition-colors"
+              onClick={handleWriteClick}
+            >
               <i className="fas fa-edit mr-2"></i> 글쓰기
             </button>
           </div>
