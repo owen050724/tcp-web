@@ -1,13 +1,14 @@
+// src/pages/Announcement.jsx
 import React, { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // useNavigate와 Link 훅 임포트
+import { useNavigate, Link } from 'react-router-dom';
 
 function Announcement() {
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   // 더미 공지사항 데이터
   const announcements = [
     {
-      id: 0, // 고유 ID 추가
+      id: 0,
       title: '2025년 2학기 신입 부원 모집 안내',
       date: '2025-07-01',
       summary: '다가오는 2학기 신입 부원을 모집합니다. 자세한 내용은 링크를 참고해주세요.',
@@ -28,7 +29,7 @@ function Announcement() {
       author: '관리자'
     },
     {
-      id: 3,
+    id: 3,
       title: '동아리실 이용 수칙 안내',
       date: '2025-06-10',
       summary: '동아리실 이용에 대한 새로운 수칙이 적용되니 확인하시고 협조 부탁드립니다.',
@@ -61,8 +62,7 @@ function Announcement() {
       observer.disconnect(); // IntersectionObserver 연결 해제
     };
   }, []); // 빈 배열을 두어 컴포넌트 마운트 시 한 번만 실행
-  
-  // "글쓰기" 버튼 클릭 핸들러
+
   const handleWriteClick = () => {
     navigate('/announcement/write'); // AnnouncementWrite 페이지로 이동
   };
@@ -92,7 +92,6 @@ function Announcement() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="orbitron text-3xl md:text-4xl font-bold gradient-text">공지사항</h2>
-            {/* "글쓰기" 버튼에 onClick 핸들러 추가 */}
             <button
               className="cta-button px-6 py-2 rounded-lg text-sm font-bold text-white hover:text-black transition-colors"
               onClick={handleWriteClick}
@@ -100,7 +99,7 @@ function Announcement() {
               <i className="fas fa-edit mr-2"></i> 글쓰기
             </button>
           </div>
-          
+
           <div className="space-y-6">
             {/* 공지사항 목록을 동적으로 렌더링 */}
             {announcements.map((announcement) => (
@@ -110,15 +109,12 @@ function Announcement() {
                 className="block announcement-item p-6 rounded-xl scroll-fade"
               >
                 <div className="flex items-center justify-between mb-2">
-                    {/* 제목 텍스트 왼쪽 정렬 */}
                     <h3 className="font-bold text-xl text-blue-300 text-left">{announcement.title}</h3>
                     <span className="text-sm text-gray-400">{announcement.date}</span>
                 </div>
-                {/* 내용 텍스트 왼쪽 정렬 */}
                 <p className="text-gray-300 mb-2 text-left">
                     {announcement.summary}
                 </p>
-                {/* 작성자 텍스트 왼쪽 정렬 */}
                 <div className="text-sm text-gray-500 text-left">작성자: {announcement.author} <i className="fas fa-user-shield ml-1"></i></div>
               </Link>
             ))}

@@ -51,8 +51,8 @@ function App() {
           <Route path="/members" element={<Members />} />
           <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/announcement" element={<Announcement />} />
-          <Route path="/announcement/write" element={<AnnouncementWrite />} /> {/* 공지사항 작성 페이지 라우트 추가 */}
-          <Route path="/announcement/:id" element={<AnnouncementArticle />} /> {/* 공지사항 상세 페이지 라우트 추가 */}
+          <Route path="/announcement/write" element={<AnnouncementWrite />} />
+          <Route path="/announcement/:id" element={<AnnouncementArticle />} /> {/* articleId 대신 id로 통일 */}
           <Route path="/study" element={<Study />} />
           <Route path="/team" element={<Team />} />
           <Route path="/login" element={<Login />} />

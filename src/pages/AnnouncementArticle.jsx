@@ -1,4 +1,3 @@
-// src/pages/AnnouncementArticle.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import logo from '../logo.svg';
@@ -8,7 +7,6 @@ import markdownit from 'markdown-it';
 const md = markdownit();
 
 // 더미 게시글 데이터 (실제로는 API에서 가져옴)
-// 여러 개의 게시글을 배열 형태로 관리합니다.
 const allArticlesData = [
     {
         id: 0,
@@ -135,13 +133,18 @@ const allArticlesData = [
 ];
 
 function AnnouncementArticle() {
-    const { articleId } = useParams(); // URL 파라미터에서 articleId 가져오기
+    const { id } = useParams(); // 라우트 파라미터 이름을 'id'로 받습니다.
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-    
-    // URL 파라미터의 articleId(문자열)와 일치하는 게시글을 찾습니다.
-    const article = allArticlesData.find(art => art.id === parseInt(articleId));
 
-    // 이펙트 훅으로 스크롤 애니메이션 구현
+    // 디버깅을 위한 로그 추가
+    console.log('useParams에서 가져온 id:', id, typeof id);
+    
+    // URL 파라미터의 id(문자열)와 일치하는 게시글을 찾습니다.
+    const article = allArticlesData.find(art => art.id === parseInt(id));
+    
+    // 디버깅을 위한 로그 추가
+    console.log('찾은 게시글 데이터:', article);
+
     useEffect(() => {
         const observerOptions = {
             threshold: 0.1,
@@ -163,11 +166,9 @@ function AnnouncementArticle() {
         return () => observer.disconnect();
     }, []);
 
-    // 공유 모달 열기/닫기
     const openShareModal = () => setIsShareModalOpen(true);
     const closeShareModal = () => setIsShareModalOpen(false);
 
-    // URL 복사 기능
     const copyUrl = () => {
         const urlToCopy = window.location.href;
         navigator.clipboard.writeText(urlToCopy).then(() => {
@@ -178,7 +179,6 @@ function AnnouncementArticle() {
         });
     };
 
-    // 공유 모달 내 버튼 핸들러
     const handleShareButtonClick = (platform) => {
         const url = window.location.href;
         const title = document.title;
@@ -217,21 +217,17 @@ function AnnouncementArticle() {
         );
     }
     
-    // HTML 내용을 직접 렌더링하기 위해 dangerouslySetInnerHTML 사용
     const articleBodyMarkup = { __html: article.content };
 
     return (
         <main className="pt-20 pb-16 min-h-screen">
             <div className="container mx-auto px-4 max-w-4xl">
-                {/* Back to announcements button */}
                 <div className="mb-8 scroll-fade">
                     <Link to="/announcement" className="back-button inline-flex items-center px-6 py-3 rounded-lg text-sm font-medium">
                         <i className="fas fa-arrow-left mr-2"></i>
                         공지사항 목록으로 돌아가기
                     </Link>
                 </div>
-
-                {/* Article Header */}
                 <article className="scroll-fade">
                     <header className="mb-8">
                         <div className="mb-4">
@@ -240,8 +236,6 @@ function AnnouncementArticle() {
                         <h1 className="orbitron text-3xl md:text-5xl font-bold mb-6 gradient-text">
                             {article.title}
                         </h1>
-                        
-                        {/* Article Meta */}
                         <div className="article-meta rounded-lg p-6 mb-8">
                             <div className="flex flex-wrap items-center justify-between text-sm text-gray-300">
                                 <div className="flex items-center space-x-6 mb-2 md:mb-0">
@@ -267,13 +261,9 @@ function AnnouncementArticle() {
                             </div>
                         </div>
                     </header>
-
-                    {/* Article Content */}
                     <div className="article-content rounded-lg p-8 mb-8">
                         <div className="article-body text-gray-200" dangerouslySetInnerHTML={articleBodyMarkup} />
                     </div>
-
-                    {/* Article Footer */}
                     <footer className="border-t border-gray-700 pt-6">
                         <div className="flex flex-wrap items-center justify-between">
                             <div className="flex items-center space-x-4 mb-4 md:mb-0">
@@ -296,8 +286,6 @@ function AnnouncementArticle() {
                         </div>
                     </footer>
                 </article>
-
-                {/* Back to top button */}
                 <div className="text-center mt-12">
                     <Link to="/announcement" className="back-button inline-flex items-center px-8 py-4 rounded-lg text-lg font-medium">
                         <i className="fas fa-list mr-3"></i>
@@ -305,8 +293,6 @@ function AnnouncementArticle() {
                     </Link>
                 </div>
             </div>
-            
-            {/* 공유 모달 */}
             {isShareModalOpen && (
                 <div id="shareModal" className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" onClick={closeShareModal}>
                     <div className="bg-gray-900 text-white rounded-xl overflow-hidden w-80 shadow-2xl border border-gray-800" onClick={(e) => e.stopPropagation()}>
