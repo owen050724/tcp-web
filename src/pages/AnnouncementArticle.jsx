@@ -2,119 +2,151 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import logo from '../logo.svg';
+import DOMPurify from 'dompurify';
+import markdownit from 'markdown-it';
+
+const md = markdownit();
 
 // 더미 게시글 데이터 (실제로는 API에서 가져옴)
-const articleData = {
-    id: 0,
-    category: '모집공고',
-    title: '2025학년도 2학기 TCP 신입 부원 모집 안내',
-    author: '관리자',
-    date: '2025-07-01',
-    views: 245,
-    likes: 18,
-    tags: ['모집', '신입', '2025'],
-    content: `
-        <p class="text-lg font-medium text-blue-300 mb-6">
-            안녕하세요, TCP(Team Crazy Performance) 회원 여러분!
-        </p>
-        
-        <p>
-            우리는 2025학년도 2학기 TCP 신입 부원 모집을 공식적으로 발표하게 되어 기쁩니다. 
-            고급 소프트웨어 개발에 전념하는 동아리로서, 웹, 앱, 또는 임베디드 개발에 열정적인 
-            모든 학생들을 환영합니다.
-        </p>
-
-        <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">📅 오리엔테이션 일정</h3>
-        <p>
-            오리엔테이션 세션은 <strong class="text-blue-300">7월 15일 오후 6시</strong>, 
-            <strong class="text-purple-300">공학관 302호</strong>에서 개최될 예정입니다.
-        </p>
-
-        <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">🎯 지원 자격</h3>
-        <p>
-            TCP는 다음과 같은 학생들을 찾고 있습니다:
-        </p>
-        <ul class="list-disc list-inside ml-4 space-y-2 text-gray-300">
-            <li>소프트웨어 개발에 대한 강한 열정을 가진 학생</li>
-            <li>팀워크와 협업을 중시하는 학생</li>
-            <li>새로운 기술 학습에 적극적인 학생</li>
-            <li>프로젝트 경험이 있거나 관련 분야에 관심이 있는 학생</li>
-        </ul>
-
-        <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">🚀 TCP에서 얻을 수 있는 것</h3>
-        <p>
-            TCP 회원으로서 다음과 같은 혜택을 누릴 수 있습니다:
-        </p>
-        <ul class="list-disc list-inside ml-4 space-y-2 text-gray-300">
-            <li>실무 중심의 프로젝트 경험</li>
-            <li>선배들의 멘토링 및 기술 지도</li>
-            <li>다양한 개발 스택 학습 기회</li>
-            <li>네트워킹 및 취업 지원</li>
-            <li>해커톤 및 대회 참가 기회</li>
-        </ul>
-
-        <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">📝 지원 방법</h3>
-        <p>
-            지원을 원하시는 분들은 첨부된 링크의 구글 폼을 작성해 주시기 바랍니다. 
-            간단한 자기소개와 개발 경험, 그리고 TCP에 대한 관심사를 적어주시면 됩니다.
-        </p>
-
-        <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-6 my-8">
-            <div class="flex items-center space-x-3 mb-4">
-                <i class="fas fa-link text-white text-2xl"></i>
-                <h4 class="orbitron text-lg font-bold text-white">지원서 링크</h4>
-            </div>
-            <p class="text-white mb-4">
-                아래 링크를 클릭하여 지원서를 작성해 주세요:
+// 여러 개의 게시글을 배열 형태로 관리합니다.
+const allArticlesData = [
+    {
+        id: 0,
+        category: '모집공고',
+        title: '2025학년도 2학기 TCP 신입 부원 모집 안내',
+        author: '관리자',
+        date: '2025-07-01',
+        views: 245,
+        likes: 18,
+        tags: ['모집', '신입', '2025'],
+        content: `
+            <p class="text-lg font-medium text-blue-300 mb-6">
+                안녕하세요, TCP(Team Crazy Performance) 회원 여러분!
             </p>
-            <a href="#" class="inline-flex items-center px-6 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
-                <i class="fab fa-google mr-2"></i>
-                지원서 바로가기
-            </a>
-        </div>
-
-        <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">❓ 궁금한 점이 있다면</h3>
-        <p>
-            기타 궁금한 사항이 있으시면 언제든지 연락 주시기 바랍니다. 
-            아래 연락처로 문의하시거나, 오리엔테이션에 참석하여 직접 질문해 주세요.
-        </p>
-
-        <div class="bg-gray-800 rounded-lg p-6 mt-8">
-            <h4 class="orbitron text-lg font-bold text-blue-300 mb-4">연락처 정보</h4>
-            <div class="space-y-3 text-gray-300">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-envelope text-purple-400"></i>
-                    <span>tcp@university.ac.kr</span>
+            <p>
+                우리는 2025학년도 2학기 TCP 신입 부원 모집을 공식적으로 발표하게 되어 기쁩니다. 
+                고급 소프트웨어 개발에 전념하는 동아리로서, 웹, 앱, 또는 임베디드 개발에 열정적인 
+                모든 학생들을 환영합니다.
+            </p>
+            <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">📅 오리엔테이션 일정</h3>
+            <p>
+                오리엔테이션 세션은 <strong class="text-blue-300">7월 15일 오후 6시</strong>, 
+                <strong class="text-purple-300">공학관 302호</strong>에서 개최될 예정입니다.
+            </p>
+            <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">🎯 지원 자격</h3>
+            <p>
+                TCP는 다음과 같은 학생들을 찾고 있습니다:
+            </p>
+            <ul class="list-disc list-inside ml-4 space-y-2 text-gray-300">
+                <li>소프트웨어 개발에 대한 강한 열정을 가진 학생</li>
+                <li>팀워크와 협업을 중시하는 학생</li>
+                <li>새로운 기술 학습에 적극적인 학생</li>
+                <li>프로젝트 경험이 있거나 관련 분야에 관심이 있는 학생</li>
+            </ul>
+            <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">🚀 TCP에서 얻을 수 있는 것</h3>
+            <p>
+                TCP 회원으로서 다음과 같은 혜택을 누릴 수 있습니다:
+            </p>
+            <ul class="list-disc list-inside ml-4 space-y-2 text-gray-300">
+                <li>실무 중심의 프로젝트 경험</li>
+                <li>선배들의 멘토링 및 기술 지도</li>
+                <li>다양한 개발 스택 학습 기회</li>
+                <li>네트워킹 및 취업 지원</li>
+                <li>해커톤 및 대회 참가 기회</li>
+            </ul>
+            <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">📝 지원 방법</h3>
+            <p>
+                지원을 원하시는 분들은 첨부된 링크의 구글 폼을 작성해 주시기 바랍니다. 
+                간단한 자기소개와 개발 경험, 그리고 TCP에 대한 관심사를 적어주시면 됩니다.
+            </p>
+            <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-6 my-8">
+                <div class="flex items-center space-x-3 mb-4">
+                    <i class="fas fa-link text-white text-2xl"></i>
+                    <h4 class="orbitron text-lg font-bold text-white">지원서 링크</h4>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-phone text-green-400"></i>
-                    <span>010-1234-5678</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <i class="fab fa-instagram text-pink-400"></i>
-                    <span>@tcp_official</span>
+                <p class="text-white mb-4">
+                    아래 링크를 클릭하여 지원서를 작성해 주세요:
+                </p>
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fab fa-google mr-2"></i>
+                    지원서 바로가기
+                </a>
+            </div>
+            <h3 class="orbitron text-xl font-bold text-blue-400 mt-8 mb-4">❓ 궁금한 점이 있다면</h3>
+            <p>
+                기타 궁금한 사항이 있으시면 언제든지 연락 주시기 바랍니다. 
+                아래 연락처로 문의하시거나, 오리엔테이션에 참석하여 직접 질문해 주세요.
+            </p>
+            <div class="bg-gray-800 rounded-lg p-6 mt-8">
+                <h4 class="orbitron text-lg font-bold text-blue-300 mb-4">연락처 정보</h4>
+                <div class="space-y-3 text-gray-300">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-purple-400"></i>
+                        <span>tcp@university.ac.kr</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-phone text-green-400"></i>
+                        <span>010-1234-5678</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fab fa-instagram text-pink-400"></i>
+                        <span>@tcp_official</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <p class="text-center text-lg font-medium text-gradient-to-r from-blue-400 to-purple-400 mt-8">
-            TCP와 함께 성장하며 뛰어난 개발자가 되어보세요! 🚀
-        </p>
-    `,
-};
-
+            <p class="text-center text-lg font-medium text-gradient-to-r from-blue-400 to-purple-400 mt-8">
+                TCP와 함께 성장하며 뛰어난 개발자가 되어보세요! 🚀
+            </p>
+        `,
+    },
+    {
+      id: 1,
+      category: '공지사항',
+      title: '정기 스터디 개설 및 참여 독려',
+      author: '관리자',
+      date: '2025-06-25',
+      views: 180,
+      likes: 10,
+      tags: ['스터디', '참여', '공지'],
+      content: '<p>하반기 정기 스터디를 개설합니다. 적극적인 참여와 새로운 스터디 제안을 부탁드립니다.</p>',
+    },
+    {
+      id: 2,
+      category: '행사안내',
+      title: '제1회 TCP 해커톤 개최 공고',
+      author: '관리자',
+      date: '2025-06-18',
+      views: 350,
+      likes: 25,
+      tags: ['해커톤', '행사', '공고'],
+      content: '<p>TCP 첫 해커톤이 개최됩니다. 많은 관심과 참여 바랍니다.</p>',
+    },
+    {
+      id: 3,
+      category: '규정안내',
+      title: '동아리실 이용 수칙 안내',
+      author: '관리자',
+      date: '2025-06-10',
+      views: 90,
+      likes: 5,
+      tags: ['규정', '동아리실'],
+      content: '<p>동아리실 이용에 대한 새로운 수칙이 적용되니 확인하시고 협조 부탁드립니다.</p>',
+    }
+];
 
 function AnnouncementArticle() {
     const { articleId } = useParams(); // URL 파라미터에서 articleId 가져오기
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     
+    // URL 파라미터의 articleId(문자열)와 일치하는 게시글을 찾습니다.
+    const article = allArticlesData.find(art => art.id === parseInt(articleId));
+
     // 이펙트 훅으로 스크롤 애니메이션 구현
     useEffect(() => {
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -131,9 +163,6 @@ function AnnouncementArticle() {
         return () => observer.disconnect();
     }, []);
 
-    // 더미 데이터를 사용하므로 articleId가 0일 때만 유효하다고 가정
-    const article = articleId === '0' ? articleData : null;
-    
     // 공유 모달 열기/닫기
     const openShareModal = () => setIsShareModalOpen(true);
     const closeShareModal = () => setIsShareModalOpen(false);
@@ -175,6 +204,7 @@ function AnnouncementArticle() {
         }
     };
     
+    // 게시글이 없을 경우 에러 메시지 렌더링
     if (!article) {
         return (
             <div className="container mx-auto px-4 py-24 text-center text-gray-400">
@@ -188,9 +218,6 @@ function AnnouncementArticle() {
     }
     
     // HTML 내용을 직접 렌더링하기 위해 dangerouslySetInnerHTML 사용
-    // 이 경우 XSS 공격에 취약할 수 있으므로, 서버 측에서 sanitizing하거나
-    // React에서 Dompurify 같은 라이브러리를 사용하는 것이 권장됩니다.
-    // 여기서는 HTML 목업에 있는 내용을 그대로 보여주기 위해 사용합니다.
     const articleBodyMarkup = { __html: article.content };
 
     return (

@@ -1,8 +1,40 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
+import { useNavigate, Link } from 'react-router-dom'; // useNavigate와 Link 훅 임포트
 
 function Announcement() {
   const navigate = useNavigate(); // useNavigate 훅 사용
+
+  // 더미 공지사항 데이터
+  const announcements = [
+    {
+      id: 0, // 고유 ID 추가
+      title: '2025년 2학기 신입 부원 모집 안내',
+      date: '2025-07-01',
+      summary: '다가오는 2학기 신입 부원을 모집합니다. 자세한 내용은 링크를 참고해주세요.',
+      author: '관리자'
+    },
+    {
+      id: 1,
+      title: '정기 스터디 개설 및 참여 독려',
+      date: '2025-06-25',
+      summary: '하반기 정기 스터디를 개설합니다. 적극적인 참여와 새로운 스터디 제안을 부탁드립니다.',
+      author: '관리자'
+    },
+    {
+      id: 2,
+      title: '제1회 TCP 해커톤 개최 공고',
+      date: '2025-06-18',
+      summary: 'TCP 첫 해커톤이 개최됩니다. 많은 관심과 참여 바랍니다.',
+      author: '관리자'
+    },
+    {
+      id: 3,
+      title: '동아리실 이용 수칙 안내',
+      date: '2025-06-10',
+      summary: '동아리실 이용에 대한 새로운 수칙이 적용되니 확인하시고 협조 부탁드립니다.',
+      author: '관리자'
+    }
+  ];
 
   useEffect(() => {
     // IntersectionObserver를 사용하여 스크롤 시 요소가 보일 때 애니메이션 추가
@@ -70,61 +102,26 @@ function Announcement() {
           </div>
           
           <div className="space-y-6">
-            <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
+            {/* 공지사항 목록을 동적으로 렌더링 */}
+            {announcements.map((announcement) => (
+              <Link // Link 컴포넌트 사용
+                to={`/announcement/${announcement.id}`} // 동적 라우트 경로 설정
+                key={announcement.id} // 고유 key prop 추가
+                className="block announcement-item p-6 rounded-xl scroll-fade"
+              >
                 <div className="flex items-center justify-between mb-2">
                     {/* 제목 텍스트 왼쪽 정렬 */}
-                    <h3 className="font-bold text-xl text-blue-300 text-left">2025년 2학기 신입 부원 모집 안내</h3>
-                    <span className="text-sm text-gray-400">2025-07-01</span>
+                    <h3 className="font-bold text-xl text-blue-300 text-left">{announcement.title}</h3>
+                    <span className="text-sm text-gray-400">{announcement.date}</span>
                 </div>
                 {/* 내용 텍스트 왼쪽 정렬 */}
                 <p className="text-gray-300 mb-2 text-left">
-                    다가오는 2학기 신입 부원을 모집합니다. 자세한 내용은 링크를 참고해주세요.
+                    {announcement.summary}
                 </p>
                 {/* 작성자 텍스트 왼쪽 정렬 */}
-                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
-            </a>
-
-            <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
-                <div className="flex items-center justify-between mb-2">
-                    {/* 제목 텍스트 왼쪽 정렬 */}
-                    <h3 className="font-bold text-xl text-purple-300 text-left">정기 스터디 개설 및 참여 독려</h3>
-                    <span className="text-sm text-gray-400">2025-06-25</span>
-                </div>
-                {/* 내용 텍스트 왼쪽 정렬 */}
-                <p className="text-gray-300 mb-2 text-left">
-                    하반기 정기 스터디를 개설합니다. 적극적인 참여와 새로운 스터디 제안을 부탁드립니다.
-                </p>
-                {/* 작성자 텍스트 왼쪽 정렬 */}
-                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
-            </a>
-
-            <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
-                <div className="flex items-center justify-between mb-2">
-                    {/* 제목 텍스트 왼쪽 정렬 */}
-                    <h3 className="font-bold text-xl text-green-300 text-left">제1회 TCP 해커톤 개최 공고</h3>
-                    <span className="text-sm text-gray-400">2025-06-18</span>
-                </div>
-                {/* 내용 텍스트 왼쪽 정렬 */}
-                <p className="text-gray-300 mb-2 text-left">
-                    TCP 첫 해커톤이 개최됩니다. 많은 관심과 참여 바랍니다.
-                </p>
-                {/* 작성자 텍스트 왼쪽 정렬 */}
-                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
-            </a>
-
-            <a href="#" className="block announcement-item p-6 rounded-xl scroll-fade">
-                <div className="flex items-center justify-between mb-2">
-                    {/* 제목 텍스트 왼쪽 정렬 */}
-                    <h3 className="font-bold text-xl text-pink-300 text-left">동아리실 이용 수칙 안내</h3>
-                    <span className="text-sm text-gray-400">2025-06-10</span>
-                </div>
-                {/* 내용 텍스트 왼쪽 정렬 */}
-                <p className="text-gray-300 mb-2 text-left">
-                    동아리실 이용에 대한 새로운 수칙이 적용되니 확인하시고 협조 부탁드립니다.
-                </p>
-                {/* 작성자 텍스트 왼쪽 정렬 */}
-                <div className="text-sm text-gray-500 text-left">작성자: 관리자 <i className="fas fa-user-shield ml-1"></i></div>
-            </a>
+                <div className="text-sm text-gray-500 text-left">작성자: {announcement.author} <i className="fas fa-user-shield ml-1"></i></div>
+              </Link>
+            ))}
           </div>
 
           <div className="flex justify-center mt-12 space-x-2">
