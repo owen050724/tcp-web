@@ -14,6 +14,7 @@ import Members from './pages/Members';
 import Recruitment from './pages/Recruitment';
 import Announcement from './pages/Announcement';
 import AnnouncementWrite from './pages/AnnouncementWrite';
+import AnnouncementArticle from './pages/AnnouncementArticle';
 import Study from './pages/Study';
 import Team from './pages/Team';
 import Login from './pages/Login';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/announcement" element={<Announcement />} />
           <Route path="/announcement/write" element={<AnnouncementWrite />} /> {/* 공지사항 작성 페이지 라우트 추가 */}
+          <Route path="/announcement/:id" element={<AnnouncementArticle />} /> {/* 공지사항 상세 페이지 라우트 추가 */}
           <Route path="/study" element={<Study />} />
           <Route path="/team" element={<Team />} />
           <Route path="/login" element={<Login />} />
