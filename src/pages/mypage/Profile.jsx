@@ -50,6 +50,78 @@ function Profile() {
   // textarea 자동 높이 조절을 위한 ref
   const bioRef = useRef(null);
 
+  // Team.jsx에서 가져온 태그 스타일 헬퍼 함수
+  const getTagBgClass = (tag) => {
+    switch (tag) {
+        case 'JavaScript':
+        case 'React':
+        case 'Python':
+        case 'C++':
+        case 'Java':
+        case 'Spring':
+        case 'Next.js':
+        case 'TypeScript':
+        case 'Node.js':
+        case 'MySQL':
+        case 'MongoDB':
+        case 'Flutter':
+        case 'Swift':
+        case 'Kotlin':
+        case 'Unity':
+        case 'C#':
+        case 'CSS':
+        case 'JPA':
+        case 'AWS':
+        case 'UI/UX':
+        case 'Vue.js':
+        case 'TailwindCSS':
+            return 'bg-blue-900 text-blue-300';
+        case '알고리즘':
+        case '코딩테스트':
+        case '심화':
+            return 'bg-purple-900 text-purple-300';
+        case 'DevOps':
+        case '클라우드':
+        case 'Kubernetes':
+        case 'Docker':
+        case 'CI/CD':
+            return 'bg-green-900 text-green-300';
+        case 'AI':
+        case '머신러닝':
+        case '생성형AI':
+        case 'TensorFlow':
+        case 'PyTorch':
+        case 'Hugging Face':
+            return 'bg-yellow-900 text-yellow-300';
+        case '게임개발':
+        case 'Game Dev':
+            return 'bg-red-900 text-red-300';
+        default:
+            return 'bg-gray-700 text-gray-300';
+    }
+  };
+
+  // 모든 사용 가능한 기술 스택 태그 목록
+  const allTechTags = [
+    'JavaScript', 'React', 'TypeScript', 'Node.js', 'Python', 'C++', 'Java',
+    'Spring', 'Next.js', 'MySQL', 'MongoDB', 'Flutter', 'Swift', 'Kotlin', 'Unity',
+    'C#', 'CSS', 'TailwindCSS', 'AI', 'TensorFlow', 'PyTorch', 'Hugging Face',
+    'DevOps', 'Kubernetes', 'Docker', 'AWS'
+  ];
+
+  // 기술 스택 태그 클릭 핸들러
+  const handleTagButtonClick = (tag) => {
+    setProfile(prev => {
+        const newTechStack = new Set(prev.techStack);
+        if (newTechStack.has(tag)) {
+            newTechStack.delete(tag);
+        } else {
+            newTechStack.add(tag);
+        }
+        return { ...prev, techStack: Array.from(newTechStack) };
+    });
+  };
+
   // textarea 높이 조절
   useEffect(() => {
     if (bioRef.current) {
@@ -99,7 +171,6 @@ function Profile() {
   // 프로필 정보 저장
   const saveProfileSettings = () => {
     alert('프로필 정보가 저장되었습니다!');
-    // 실제로는 여기에 API 호출을 통한 저장 로직이 들어갑니다.
   };
 
   return (
@@ -151,9 +222,29 @@ function Profile() {
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">기술 스택</label>
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {profile.techStack.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                    {profile.techStack.map((tag, index) => (
+                      <span key={index} className={`tag ${getTagBgClass(tag)}`}>{tag}</span>
+                    ))}
                   </div>
                   <input type="text" className="editable form-input" name="techStack" value={profile.techStack.join(', ')} onChange={(e) => setProfile(prev => ({ ...prev, techStack: e.target.value.split(',').map(s => s.trim()) }))} />
+                </div>
+                {/* 기술 스택 태그 버튼 추가 */}
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">추천 기술 스택</label>
+                    <div className="flex flex-wrap gap-2">
+                        {allTechTags.map(tag => (
+                            <button
+                                key={tag}
+                                type="button"
+                                className={`px-3 py-1 rounded-full text-xs font-medium hover:opacity-80 transition-colors 
+                                    ${getTagBgClass(tag)} 
+                                    ${profile.techStack.includes(tag) ? 'ring-2 ring-offset-2 ring-offset-gray-900 ring-white' : ''}`}
+                                onClick={() => handleTagButtonClick(tag)}
+                            >
+                                {tag}
+                            </button>
+                        ))}
+                    </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">현재 상태</label>
