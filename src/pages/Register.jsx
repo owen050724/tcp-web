@@ -60,7 +60,7 @@ function Register() {
     }, 500); // 500ms 딜레이 시뮬레이션
 
     return () => clearTimeout(timeoutId); // 클린업 함수
-  }, [username, existingUsernames]);
+  }, [username]);
 
   // 회원가입 버튼 활성화/비활성화 로직 (termsAgreed에 따라)
   useEffect(() => {

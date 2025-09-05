@@ -1,6 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faChevronDown, faChevronUp, faPlus, faEdit, faTrash, faCalendarAlt, faUsers, faTag, faCode, faMobileAlt, faRobot, faDatabase, faPalette, faChartBar, faLaptopCode, faCloud, faServer, faCogs, faMicrochip, faBrain, faChartLine, faCube, faNetworkWired, faShieldAlt, faLock, faUnlock, faUserShield, faCrown, faUserMinus, faPlay, faPause, faCheck, faTimes, faSave, faUndo, faPaperPlane, faEye, faArrowLeft, faExclamationCircle, faBell, faHome, faFileAlt, faBullhorn, faNewspaper, faBook, faProjectDiagram, faUserCircle, faIdCard, faQuoteLeft, faEnvelope, faBriefcase, faLink, faPhone, faKey, faSignOutAlt, faGraduationCap, faSpinner, faCheckCircle, faTimesCircle, faDownload, faSortUp, faSortDown, faGamepad, faGoogle, faGithub } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faTrash,
+  faTimes,
+  faPaperPlane,
+  faRocket,
+  faGraduationCap,
+  faHeart,
+  faTrophy,
+  faProjectDiagram,
+  faBriefcase,
+  faCode,
+  faGlobe,
+  faMobileAlt,
+  faBrain,
+  faUsers,
+  faCalendarAlt,
+  faUserFriends,
+  faAward,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 function Recruitment() {
   const [isModalOpen, setIsModalOpen] = useState(false);

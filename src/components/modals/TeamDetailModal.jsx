@@ -122,7 +122,9 @@ export default function TeamDetailModal({ isOpen, onClose, team }) {
                 <div className="font-semibold text-white">
                   {team.leader.name}
                 </div>
-                <div className="text-sm text-gray-400">{team.leader.role}</div>
+                <div className="text-sm text-gray-400">
+                  {team.leader.role}
+                </div>
               </div>
             </div>
           </div>
@@ -229,7 +231,9 @@ export default function TeamDetailModal({ isOpen, onClose, team }) {
             선발 과정
           </h4>
           <div className="bg-indigo-900/20 border border-indigo-800 rounded-lg p-4">
-            <p className="text-indigo-300">{team.selectionProcess}</p>
+            <p className="text-indigo-300">
+              {team.selectionProcess}
+            </p>
           </div>
         </section>
 
@@ -275,10 +279,13 @@ export default function TeamDetailModal({ isOpen, onClose, team }) {
           >
             닫기
           </button>
-          {team.status === '모집중' && !isExpired(team.deadline) ? (
+          {team.status === '모집중' &&
+          !isExpired(team.deadline) ? (
             <button
               onClick={() => {
-                alert('지원이 완료되었습니다! 팀 리더가 연락드릴 예정입니다.');
+                alert(
+                  '지원이 완료되었습니다! 팀 리더가 연락드릴 예정입니다.'
+                );
                 onClose();
               }}
               className="cta-button px-6 py-2 rounded-lg font-medium text-white"

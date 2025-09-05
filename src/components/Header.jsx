@@ -20,9 +20,12 @@ function Header({ isScrolled }) {
         : 'bg-gradient-to-r from-blue-500 to-purple-500'
     } hover:from-blue-600 hover:to-purple-600 text-white`;
 
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-md border-b border-gray-800 transition-colors duration-300`}
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        isScrolled ? 'bg-black/95' : 'bg-black/90'
+      } backdrop-blur-md border-b border-gray-800 transition-colors duration-300`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">

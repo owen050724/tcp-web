@@ -2,7 +2,16 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser, faEye, faBook, faUsers, faCog, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faEye,
+  faBook,
+  faUsers,
+  faCog,
+  faSignOutAlt,
+  faHome,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function MyPageSidebar() {
   const location = useLocation();

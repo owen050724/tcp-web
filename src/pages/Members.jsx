@@ -1,5 +1,6 @@
 // src/pages/Members.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import logo from '../logo.svg';
 
 function Members() {
   // 멤버 데이터 (필터링에 필요한 정보를 포함하도록 확장)
@@ -172,6 +173,7 @@ function Members() {
       case 'TypeScript':
       case 'CSS':
       case 'MySQL':
+      case 'Data Science':
         return 'bg-blue-900 text-blue-300';
       case 'Python':
       case 'TensorFlow':
@@ -183,6 +185,7 @@ function Members() {
       case 'Machine Learning':
         return 'bg-purple-900 text-purple-300';
       case 'Node.js':
+      case 'Spring':
         return 'bg-green-900 text-green-300';
       case 'Swift':
       case 'Flutter':
@@ -194,6 +197,8 @@ function Members() {
       case 'Vue.js':
         return 'bg-teal-900 text-teal-300';
       case 'AI':
+      case 'AI/ML':
+      case 'Machine Learning':
       case 'Data Science':
         return 'bg-orange-900 text-orange-300';
       default:

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import MarkdownIt from 'markdown-it';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import logo from '../logo.svg';
+import DOMPurify from 'dompurify';
+import markdownit from 'markdown-it';
 
 const md = markdownit();
 
@@ -132,7 +134,7 @@ const allArticlesData = [
   },
 ];
 
-const AnnouncementArticle = () => {
+function AnnouncementArticle() {
   const { id } = useParams(); // 라우트 파라미터 이름을 'id'로 받습니다.
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 

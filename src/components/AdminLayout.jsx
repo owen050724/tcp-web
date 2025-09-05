@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import AdminSidebar from './AdminSidebar';
+import logo from '../logo.svg';
 
-function AdminLayout({ showNotification }) {
+function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
 
@@ -56,7 +57,7 @@ function AdminLayout({ showNotification }) {
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex-shrink-0 bg-black backdrop-blur-md border-b border-gray-800">
+        <header className="flex-shrink-0 bg-black bg-opacity-90 backdrop-blur-md border-b border-gray-800">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
               <button
@@ -95,7 +96,7 @@ function AdminLayout({ showNotification }) {
         </header>
 
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-primary-black p-6">
-          <Outlet context={{ showNotification }} />
+          <Outlet />
         </main>
       </div>
     </div>

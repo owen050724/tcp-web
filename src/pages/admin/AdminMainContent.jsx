@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSave,
@@ -11,10 +11,11 @@ import {
   faTrash,
   faUndo,
   faDownload,
+  faFileAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 function AdminMainContent() {
-  const { showNotification } = useOutletContext();
   // 통계 상태 관리
   const [stats, setStats] = useState({
     activeMembers: 120,
@@ -69,14 +70,14 @@ function AdminMainContent() {
   // 모든 통계 저장
   const saveStatistics = () => {
     console.log('Saving statistics:', stats);
-    showNotification('통계가 성공적으로 저장되었습니다!', 'success');
+    alert('통계가 성공적으로 저장되었습니다!');
     // 실제로는 여기에 API 호출 로직이 들어갑니다.
   };
 
   // 모든 사진 저장
   const saveAllPhotos = () => {
     console.log('Saving all photos:', photos);
-    showNotification('모든 사진이 성공적으로 저장되었습니다!', 'success');
+    alert('모든 사진이 성공적으로 저장되었습니다!');
     // 실제로는 여기에 API 호출 로직이 들어갑니다.
   };
 
@@ -91,7 +92,7 @@ function AdminMainContent() {
       fileInputRefs.competition.current.value = '';
       fileInputRefs.study.current.value = '';
       fileInputRefs.mt.current.value = '';
-      showNotification('모든 사진이 초기화되었습니다.', 'info');
+      alert('모든 사진이 초기화되었습니다.');
     }
   };
 
@@ -111,7 +112,7 @@ function AdminMainContent() {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
-    showNotification('설정이 내보내기되었습니다.', 'success');
+    alert('설정이 내보내기되었습니다.');
   };
 
   const importSettings = () => {
@@ -128,9 +129,9 @@ function AdminMainContent() {
             if (importedSettings.statistics)
               setStats(importedSettings.statistics);
             if (importedSettings.photos) setPhotos(importedSettings.photos);
-            showNotification('설정이 성공적으로 가져와졌습니다.', 'success');
+            alert('설정이 성공적으로 가져와졌습니다.');
           } catch (error) {
-            showNotification('설정 파일을 읽는 중 오류가 발생했습니다.', 'error');
+            alert('설정 파일을 읽는 중 오류가 발생했습니다.');
           }
         };
         reader.readAsText(file);
@@ -285,7 +286,7 @@ function AdminMainContent() {
                 </div>
               )}
               {photos.competition && (
-                <img src={photos.competition} alt="Competition" />
+                <img src={photos.competition} alt="Competition Photo" />
               )}
               <div className="photo-overlay">
                 <button
@@ -357,7 +358,7 @@ function AdminMainContent() {
                   <p className="text-sm text-gray-400 mt-2">Study Sessions</p>
                 </div>
               )}
-              {photos.study && <img src={photos.study} alt="Study" />}
+              {photos.study && <img src={photos.study} alt="Study Photo" />}
               <div className="photo-overlay">
                 <button
                   className="btn-secondary"
@@ -428,7 +429,7 @@ function AdminMainContent() {
                   <p className="text-sm text-gray-400 mt-2">MT Events</p>
                 </div>
               )}
-              {photos.mt && <img src={photos.mt} alt="MT" />}
+              {photos.mt && <img src={photos.mt} alt="MT Photo" />}
               <div className="photo-overlay">
                 <button
                   className="btn-secondary"

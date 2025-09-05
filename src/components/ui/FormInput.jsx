@@ -1,20 +1,9 @@
 import React from 'react';
 
-export default function FormInput({
-  label,
-  name,
-  value,
-  onChange,
-  type = 'text',
-  required = false,
-  placeholder = '',
-}) {
+export default function FormInput({ label, name, value, onChange, type = 'text', required = false, placeholder = '' }) {
   return (
     <div>
-      <label
-        htmlFor={name}
-        className="block text-sm font-medium text-gray-300 mb-2"
-      >
+      <label htmlFor={name} className="block text-sm font-medium text-gray-300 mb-2">
         {label}
       </label>
       <input

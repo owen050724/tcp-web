@@ -1,19 +1,9 @@
 import React from 'react';
 
-export default function FormSelect({
-  label,
-  name,
-  value,
-  onChange,
-  options = [],
-  required = false,
-}) {
+export default function FormSelect({ label, name, value, onChange, options = [], required = false }) {
   return (
     <div>
-      <label
-        htmlFor={name}
-        className="block text-sm font-medium text-gray-300 mb-2"
-      >
+      <label htmlFor={name} className="block text-sm font-medium text-gray-300 mb-2">
         {label}
       </label>
       <select

@@ -2,7 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faPlus, faEdit, faTrash, faEye, faTimes, faSave, faPaperPlane, faCalendar, faUser, faTags, faHeading, faAlignLeft, faBold, faItalic, faUnderline, faListUl, faListOl, faBullhorn, faCalendarAlt, faUserPlus, faGavel, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faEye,
+  faEyeSlash,
+  faTrash,
+  faSearch,
+  faSort,
+  faSortUp,
+  faSortDown,
+  faChevronLeft,
+  faChevronRight,
+  faEdit,
+  faCheckCircle,
+  faTimesCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
