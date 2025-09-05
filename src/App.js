@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Outlet } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Outlet,
+} from 'react-router-dom';
 import './App.css';
 import './index.css';
 
@@ -35,31 +41,31 @@ import AdminMainContent from './pages/admin/AdminMainContent';
 import AdminRecruitment from './pages/admin/AdminRecruitment';
 import AdminAnnouncement from './pages/admin/AdminAnnouncement';
 
+import { useState } from 'react';
 
 // 모든 로직을 AppContent 컴포넌트로 이동
 function AppContent() {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const isNonCommonLayout =
+    location.pathname.startsWith('/mypage') ||
+    location.pathname.startsWith('/admin');
 
   useEffect(() => {
+    if (isNonCommonLayout) return;
+
     const handleScroll = () => {
-      const header = document.querySelector('header');
-      if (header && !location.pathname.startsWith('/mypage') && !location.pathname.startsWith('/admin')) {
-        if (window.scrollY > 50) {
-          header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-        } else {
-          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-        }
-      }
+      setIsScrolled(window.scrollY > 50);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
-
-  const isNonCommonLayout = location.pathname.startsWith('/mypage') || location.pathname.startsWith('/admin');
+  }, [isNonCommonLayout]);
 
   return (
     <div className="App">
-      {!isNonCommonLayout && <Header />}
+      {!isNonCommonLayout && <Header isScrolled={isScrolled} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -72,21 +78,21 @@ function AppContent() {
         <Route path="/team" element={<Team />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
+
         {/* 마이페이지 중첩 라우트 */}
         <Route path="/mypage" element={<MyPageLayout />}>
-            <Route index element={<Profile />} />
-            <Route path="settings" element={<MemberPageSetting />} />
-            <Route path="studies" element={<MyStudies />} />
-            <Route path="teams" element={<MyTeams />} />
+          <Route index element={<Profile />} />
+          <Route path="settings" element={<MemberPageSetting />} />
+          <Route path="studies" element={<MyStudies />} />
+          <Route path="teams" element={<MyTeams />} />
         </Route>
 
         {/* Admin Pages (중첩 라우트) */}
         <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="main" element={<AdminMainContent />} />
-            <Route path="recruitment" element={<AdminRecruitment />} />
-            <Route path="announcement" element={<AdminAnnouncement />} />
+          <Route index element={<AdminDashboard />} />
+          <Route path="main" element={<AdminMainContent />} />
+          <Route path="recruitment" element={<AdminRecruitment />} />
+          <Route path="announcement" element={<AdminAnnouncement />} />
         </Route>
       </Routes>
       {!isNonCommonLayout && <Footer />}
