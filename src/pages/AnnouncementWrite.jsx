@@ -1,7 +1,6 @@
 // src/pages/AnnouncementWrite.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../logo.svg';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import markdownit from 'markdown-it';
 
@@ -9,13 +8,14 @@ const md = markdownit();
 
 function AnnouncementWrite() {
   const navigate = useNavigate();
+  const { showNotification } = useOutletContext();
 
   // 폼 상태 관리
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('관리자');
+  const author = '관리자';
 
   // 모달 상태 관리
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
@@ -118,7 +118,7 @@ function AnnouncementWrite() {
   // 미리보기 모달 열기
   const handlePreview = () => {
     if (!title || !content || !category) {
-      alert('제목, 내용, 카테고리를 모두 입력해주세요.');
+      showNotification('제목, 내용, 카테고리를 모두 입력해주세요.', 'warning');
       return;
     }
     setIsPreviewModalOpen(true);
@@ -135,14 +135,14 @@ function AnnouncementWrite() {
     };
     localStorage.setItem('announcement_draft', JSON.stringify(formData));
 
-    alert('임시 저장되었습니다.');
+    showNotification('임시 저장되었습니다.', 'info');
   };
 
   // 게시하기 (폼 제출)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !category || !content.trim() || !date) {
-      alert('모든 필수 항목을 입력해주세요.');
+      showNotification('모든 필수 항목을 입력해주세요.', 'warning');
       return;
     }
 

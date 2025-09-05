@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faHome,
   faMicrochip,
   faMemory,
   faThermometerHalf,
@@ -10,23 +9,9 @@ import {
   faClock,
   faCalendarAlt,
   faUsers,
-  faBars,
-  faBell,
-  faUserSlash,
-  faDatabase,
-  faUserPlus,
-  faServer,
-  faFileAlt,
-  faBullhorn,
-  faNewspaper,
-  faBook,
-  faProjectDiagram,
-  faSave,
-  faChevronDown,
   faArrowUp,
   faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../logo.svg';
 
 function AdminDashboard() {
   // 가짜(mock) 통계 데이터 상태

@@ -1,24 +1,11 @@
 // src/pages/admin/AdminRecruitment.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSave,
-  faCheckCircle,
-  faTimesCircle,
-  faEye,
-  faEyeSlash,
-  faCalendarCheck,
-  faCalendarPlus,
-  faCalendarTimes,
-  faInfoCircle,
-  faPlay,
-  faStop,
-  faUndo,
-  faDownload,
-  faList,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPlus, faEdit, faTrash, faEye, faTimes, faSave, faPaperPlane, faCalendar, faUser, faTags, faHeading, faAlignLeft, faBold, faItalic, faUnderline, faListUl, faListOl, faBullhorn, faCalendarAlt, faUserPlus, faGavel, faExclamationTriangle, faSortUp, faSortDown, faCheckCircle, faTimesCircle, faCalendarPlus, faCalendarCheck, faCalendarTimes, faInfoCircle, faPlay, faStop, faList } from '@fortawesome/free-solid-svg-icons';
 
 function AdminRecruitment() {
+  const { showNotification } = useOutletContext();
+  const { showNotification } = useOutletContext();
   const today = new Date();
   const defaultStartDate = '2025-08-01';
   const defaultEndDate = '2025-09-01';
@@ -107,14 +94,14 @@ function AdminRecruitment() {
   const enableRecruitment = () => {
     if (window.confirm('모집을 즉시 시작하시겠습니까?')) {
       setSettings((prev) => ({ ...prev, applyButtonEnabled: true }));
-      alert('모집이 즉시 시작되었습니다!');
+      showNotification('모집이 즉시 시작되었습니다!', 'success');
     }
   };
 
   const disableRecruitment = () => {
     if (window.confirm('모집을 즉시 중단하시겠습니까?')) {
       setSettings((prev) => ({ ...prev, applyButtonEnabled: false }));
-      alert('모집이 즉시 중단되었습니다.');
+      showNotification('모집이 즉시 중단되었습니다.', 'info');
     }
   };
 
@@ -129,13 +116,13 @@ function AdminRecruitment() {
         autoDisable: true,
         autoEnable: true,
       });
-      alert('모든 설정이 기본값으로 초기화되었습니다.');
+      showNotification('모든 설정이 기본값으로 초기화되었습니다.', 'info');
     }
   };
 
   const saveAllSettings = () => {
     console.log('Saving all settings:', settings);
-    alert('모든 설정이 저장되었습니다!');
+    showNotification('모든 설정이 저장되었습니다!', 'success');
   };
 
   // 기간 관련 계산
@@ -626,7 +613,7 @@ function AdminRecruitment() {
           <div className="mt-4 text-center">
             <button
               className="btn-secondary"
-              onClick={() => alert('모든 지원서 보기 페이지로 이동')}
+              onClick={() => showNotification('모든 지원서 보기 페이지로 이동', 'info')}
             >
               <FontAwesomeIcon icon={faList} className="mr-2" />
               모든 지원서 보기

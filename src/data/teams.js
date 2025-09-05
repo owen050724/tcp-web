@@ -52,7 +52,7 @@ export const initialTeams = [
     period: '2025.08.01 – 2025.08.15',
     deadline: '2025-07-15',
     description: '실 서비스 지향 프로젝트를 위한 풀스택 팀 빌딩 중입니다.',
-    fullDescription: `서비스 운영을 목표로 하는 팀으로, 안정성과 확장성을 고려한 백엔드 구조 설계를 지향합니다.`, 
+    fullDescription: `서비스 운영을 목표로 하는 팀으로, 안정성과 확장성을 고려한 백엔드 구조 설계를 지향합니다.`,
     neededRoles: '백엔드',
     participants: [
       {
@@ -86,7 +86,7 @@ export const initialTeams = [
     period: '2025.09.01 – 2025.12.15',
     deadline: '2025-08-20',
     description: '캠퍼스 생활을 편리하게 만들어 줄 앱을 함께 만들어요!',
-    fullDescription: `학내 공지, 일정, 커뮤니티를 하나로 통합하는 캠퍼스 앱을 개발합니다.`, 
+    fullDescription: `학내 공지, 일정, 커뮤니티를 하나로 통합하는 캠퍼스 앱을 개발합니다.`,
     neededRoles: '디자인, 프론트엔드, 백엔드',
     participants: [
       {
@@ -120,7 +120,7 @@ export const initialTeams = [
     period: '2025.03.10 – 2025.05.30',
     deadline: '2025-03-05',
     description: 'ACM-ICPC 대회 준비를 위한 집중 스터디 그룹',
-    fullDescription: `주 2회 문제 풀이와 토론, 라이트닝 강의로 실력을 끌어올립니다.`, 
+    fullDescription: `주 2회 문제 풀이와 토론, 라이트닝 강의로 실력을 끌어올립니다.`,
     neededRoles: '알고리즘',
     participants: [
       {

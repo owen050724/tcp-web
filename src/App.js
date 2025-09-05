@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
-  Outlet,
+  Outlet, // eslint-disable-line no-unused-vars
 } from 'react-router-dom';
 import './App.css';
 import './index.css';
@@ -12,6 +12,7 @@ import './index.css';
 // 공통 컴포넌트 임포트
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // 페이지 컴포넌트 임포트
 import Home from './pages/Home';
@@ -25,14 +26,18 @@ import Study from './pages/Study';
 import Team from './pages/Team';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 // 마이페이지 관련 컴포넌트 임포트
 import MyPageLayout from './components/MyPageLayout';
-import MyPageSidebar from './components/MyPageSidebar';
+import MyPageSidebar from './components/MyPageSidebar'; // eslint-disable-line no-unused-vars
 import Profile from './pages/mypage/Profile';
 import MemberPageSetting from './pages/mypage/MemberPageSetting';
 import MyStudies from './pages/mypage/MyStudies';
 import MyTeams from './pages/mypage/MyTeams';
+import Settings from './pages/mypage/Settings';
+import Withdraw from './pages/mypage/Withdraw';
 
 // 관리자 페이지 관련 컴포넌트 임포트
 import AdminLayout from './components/AdminLayout';
@@ -40,13 +45,21 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminMainContent from './pages/admin/AdminMainContent';
 import AdminRecruitment from './pages/admin/AdminRecruitment';
 import AdminAnnouncement from './pages/admin/AdminAnnouncement';
+import AdminApplicationManagement from './pages/admin/AdminApplicationManagement';
+import AdminDeleteAccount from './pages/admin/AdminDeleteAccount';
+import AdminModifyUserInfo from './pages/admin/AdminModifyUserInfo';
+import AdminPermission from './pages/admin/AdminPermission';
+import AdminStudy from './pages/admin/AdminStudy';
+import AdminTeam from './pages/admin/AdminTeam';
 
 import { useState } from 'react';
+import useNotification from './hooks/useNotification';
 
 // 모든 로직을 AppContent 컴포넌트로 이동
 function AppContent() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { showNotification, NotificationComponent } = useNotification();
 
   const isNonCommonLayout =
     location.pathname.startsWith('/mypage') ||
@@ -78,24 +91,44 @@ function AppContent() {
         <Route path="/team" element={<Team />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
 
         {/* 마이페이지 중첩 라우트 */}
-        <Route path="/mypage" element={<MyPageLayout />}>
+        <Route
+          path="/mypage"
+          element={<MyPageLayout showNotification={showNotification} />}
+        >
           <Route index element={<Profile />} />
-          <Route path="settings" element={<MemberPageSetting />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="public-settings" element={<MemberPageSetting />} />
           <Route path="studies" element={<MyStudies />} />
           <Route path="teams" element={<MyTeams />} />
+          <Route path="withdraw" element={<Withdraw />} />
         </Route>
 
         {/* Admin Pages (중첩 라우트) */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={<AdminLayout showNotification={showNotification} />}
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="main" element={<AdminMainContent />} />
           <Route path="recruitment" element={<AdminRecruitment />} />
           <Route path="announcement" element={<AdminAnnouncement />} />
+          <Route
+            path="applicationmanagement"
+            element={<AdminApplicationManagement />}
+          />
+          <Route path="deleteaccount" element={<AdminDeleteAccount />} />
+          <Route path="modifyuserinfo" element={<AdminModifyUserInfo />} />
+          <Route path="permission" element={<AdminPermission />} />
+          <Route path="study" element={<AdminStudy />} />
+          <Route path="team" element={<AdminTeam />} />
         </Route>
       </Routes>
       {!isNonCommonLayout && <Footer />}
+      {NotificationComponent}
     </div>
   );
 }
@@ -104,6 +137,7 @@ function AppContent() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AppContent />
     </Router>
   );

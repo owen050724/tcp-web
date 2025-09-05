@@ -13,7 +13,8 @@ const TeamCard = React.memo(({ team, onOpenDetail }) => {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (!disabled && (e.key === 'Enter' || e.key === ' ')) onOpenDetail(team);
+        if (!disabled && (e.key === 'Enter' || e.key === ' '))
+          onOpenDetail(team);
       }}
     >
       <img

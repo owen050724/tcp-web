@@ -68,19 +68,19 @@ export default function RecruitTeamModal({ isOpen, onClose, onAddTeam }) {
     onAddTeam(newTeam);
     // Reset form
     setForm({
-        title: '',
-        category: '',
-        period: '',
-        deadline: '',
-        description: '',
-        neededRoles: '',
-        techStack: '',
-        tags: '',
-        links: '',
-        location: '',
-        selectionProcess: '',
-        contact: '',
-      });
+      title: '',
+      category: '',
+      period: '',
+      deadline: '',
+      description: '',
+      neededRoles: '',
+      techStack: '',
+      tags: '',
+      links: '',
+      location: '',
+      selectionProcess: '',
+      contact: '',
+    });
     onClose();
     alert('팀 모집이 성공적으로 등록되었습니다!');
   };
