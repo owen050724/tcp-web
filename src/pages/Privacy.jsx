@@ -30,7 +30,7 @@ const Privacy = () => {
   };
 
   return (
-    <main className="container mx-auto px-4 py-10">
+    <main className="container mx-auto px-4 py-10 pt-20">
       {/* Title & Meta */}
       <section className="mb-8">
         <div className="flex items-start justify-between flex-col lg:flex-row gap-4">

@@ -55,6 +55,11 @@ function AppContent() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const isNonCommonLayout =
     location.pathname.startsWith('/mypage') ||
     location.pathname.startsWith('/admin');
