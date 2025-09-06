@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlus,
@@ -20,9 +19,7 @@ import {
   faCalendarAlt,
   faUserFriends,
   faAward,
-  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 function Recruitment() {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import AdminSidebar from './AdminSidebar';
-import logo from '../logo.svg';
 
 function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

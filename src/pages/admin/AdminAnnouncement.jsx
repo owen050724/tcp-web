@@ -9,13 +9,9 @@ import {
   faTrash,
   faSearch,
   faSort,
-  faSortUp,
-  faSortDown,
   faChevronLeft,
   faChevronRight,
   faEdit,
-  faCheckCircle,
-  faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';

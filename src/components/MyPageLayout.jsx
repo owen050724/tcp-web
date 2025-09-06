@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Outlet, Link } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 import MyPageSidebar from './MyPageSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBell } from '@fortawesome/free-solid-svg-icons';

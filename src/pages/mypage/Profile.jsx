@@ -1,27 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLink,
-  faUser,
-  faEnvelope,
-  faCode,
-  faBriefcase,
   faCloudUploadAlt,
-  faSave,
-  faUndo,
   faTimes,
   faCalendarAlt,
   faBook,
   faUsers,
   faTrophy,
-  faPlus,
-  faEdit,
-  faTrash,
-  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import logo from '../../logo.svg';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function Profile() {
   // 프로필 정보 상태 관리

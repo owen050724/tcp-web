@@ -11,7 +11,6 @@ import {
   faSave,
   faUndo,
   faLock,
-  faCheck,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';

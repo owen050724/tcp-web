@@ -1,5 +1,4 @@
-// src/pages/admin/AdminRecruitment.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSave,
@@ -14,7 +13,6 @@ import {
   faPlay,
   faStop,
   faUndo,
-  faDownload,
   faList,
 } from '@fortawesome/free-solid-svg-icons';
 

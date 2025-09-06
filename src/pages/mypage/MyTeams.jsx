@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faUsers,
   faCalendarAlt,
   faTrophy,
   faUserTag,
-  faCheckCircle,
-  faPlayCircle,
   faTimes,
-  faGamepad,
   faMedal,
   faLink,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 function MyTeams() {
   // 팀 목록 데모 데이터

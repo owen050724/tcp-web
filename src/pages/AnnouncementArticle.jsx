@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import logo from '../logo.svg';
-import DOMPurify from 'dompurify';
 import markdownit from 'markdown-it';
 
-const md = markdownit();
 
 // 더미 게시글 데이터 (실제로는 API에서 가져옴)
 const allArticlesData = [

@@ -1,7 +1,5 @@
-// src/pages/AnnouncementWrite.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../logo.svg';
 import DOMPurify from 'dompurify';
 import markdownit from 'markdown-it';
 
@@ -15,7 +13,6 @@ function AnnouncementWrite() {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('관리자');
 
   // 모달 상태 관리
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
@@ -190,7 +187,7 @@ function AnnouncementWrite() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <i className="fas fa-user text-purple-400"></i>
-                <span>작성자: {author}</span>
+                <span>작성자: 관리자</span>
               </div>
               <div className="flex items-center space-x-2">
                 <i className="fas fa-calendar text-purple-400"></i>
