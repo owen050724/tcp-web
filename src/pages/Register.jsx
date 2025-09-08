@@ -2,6 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 
+const existingUsernames = ['admin', 'tcp_member', 'user123', 'developer'];
+const existingEmails = [
+  'admin@tcp.club',
+  'member@tcp.club',
+  'user@example.com',
+];
+const tcpMembers = [
+  { name: '김TCP', phone: '010-1234-5678' },
+  { name: '이Performance', phone: '010-2345-6789' },
+  { name: '박Developer', phone: '010-3456-7890' },
+];
+
 function Register() {
   // 폼 입력 필드 상태 관리
   const [username, setUsername] = useState('');
@@ -24,18 +36,8 @@ function Register() {
   const [usernameMessage, setUsernameMessage] = useState('');
   const [signupButtonEnabled, setSignupButtonEnabled] = useState(false);
 
-  // Mock database for demonstration (원본 HTML에서 가져옴)
-  const existingUsernames = ['admin', 'tcp_member', 'user123', 'developer'];
-  const existingEmails = [
-    'admin@tcp.club',
-    'member@tcp.club',
-    'user@example.com',
-  ];
-  const tcpMembers = [
-    { name: '김TCP', phone: '010-1234-5678' },
-    { name: '이Performance', phone: '010-2345-6789' },
-    { name: '박Developer', phone: '010-3456-7890' },
-  ];
+  
+  
 
   // 사용자명 중복 확인 로직
   useEffect(() => {
@@ -60,7 +62,7 @@ function Register() {
     }, 500); // 500ms 딜레이 시뮬레이션
 
     return () => clearTimeout(timeoutId); // 클린업 함수
-  }, [username, existingUsernames]);
+  }, [username]);
 
   // 회원가입 버튼 활성화/비활성화 로직 (termsAgreed에 따라)
   useEffect(() => {

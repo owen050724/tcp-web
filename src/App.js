@@ -47,6 +47,7 @@ import AdminModifyUserInfo from './pages/admin/AdminModifyUserInfo';
 import AdminPermission from './pages/admin/AdminPermission';
 import AdminStudy from './pages/admin/AdminStudy';
 import AdminTeam from './pages/admin/AdminTeam';
+import AdminServer from './pages/admin/AdminServer';
 
 import { useState } from 'react';
 
@@ -114,6 +115,7 @@ function AppContent() {
           <Route path="permission" element={<AdminPermission />} />
           <Route path="study" element={<AdminStudy />} />
           <Route path="team" element={<AdminTeam />} />
+          <Route path="server" element={<AdminServer />} />
         </Route>
       </Routes>
       {!isNonCommonLayout && <Footer />}

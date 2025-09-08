@@ -13,6 +13,7 @@ function AnnouncementWrite() {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
+  const [author] = useState('관리자');
 
   // 모달 상태 관리
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);

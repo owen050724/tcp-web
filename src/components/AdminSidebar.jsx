@@ -66,8 +66,8 @@ function AdminSidebar() {
             <span className="ml-2">Study Group Page</span>
           </Link>
           <Link
-            to="/admin/projects"
-            className={`sidebar-link ${isActive('/admin/projects') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/team"
+            className={`sidebar-link ${isActive('/admin/team') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-project-diagram"></i>
             <span className="ml-2">Project Team Page</span>
@@ -78,22 +78,22 @@ function AdminSidebar() {
             Account Management
           </h3>
           <Link
-            to="/admin/permissions"
-            className={`sidebar-link ${isActive('/admin/permissions') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/permission"
+            className={`sidebar-link ${isActive('/admin/permission') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-user-shield"></i>
             <span className="ml-2">Manage Permissions</span>
           </Link>
           <Link
-            to="/admin/delete-accounts"
-            className={`sidebar-link ${isActive('/admin/delete-accounts') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/delete-account"
+            className={`sidebar-link ${isActive('/admin/delete-account') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-user-slash"></i>
             <span className="ml-2">Delete Accounts</span>
           </Link>
           <Link
-            to="/admin/modify-info"
-            className={`sidebar-link ${isActive('/admin/modify-info') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/modify-user-info"
+            className={`sidebar-link ${isActive('/admin/modify-user-info') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-database"></i>
             <span className="ml-2">Modify Information</span>
@@ -104,8 +104,8 @@ function AdminSidebar() {
             Application Management
           </h3>
           <Link
-            to="/admin/applications"
-            className={`sidebar-link ${isActive('/admin/applications') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/application"
+            className={`sidebar-link ${isActive('/admin/application') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-user-plus"></i>
             <span className="ml-2">New Member Applications</span>
@@ -116,8 +116,8 @@ function AdminSidebar() {
             Web Server Management
           </h3>
           <Link
-            to="/admin/server-tools"
-            className={`sidebar-link ${isActive('/admin/server-tools') ? 'bg-gray-700 text-white' : ''}`}
+            to="/admin/server"
+            className={`sidebar-link ${isActive('/admin/server') ? 'bg-gray-700 text-white' : ''}`}
           >
             <i className="fas fa-server"></i>
             <span className="ml-2">Server Tools</span>
