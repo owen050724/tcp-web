@@ -1,21 +1,53 @@
-import React, { useState } from 'react';
 
-// A more complete React conversion of mypage_settings.html
+import React, { useState, useEffect } from 'react';
 
 const PasswordChangeModal = ({ isOpen, onClose }) => {
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [authCode, setAuthCode] = useState('');
+    const [error, setError] = useState('');
+
     if (!isOpen) return null;
 
-    // This would have its own state and logic for password change
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (newPassword !== confirmPassword) {
+            setError('새 비밀번호가 일치하지 않습니다.');
+            return;
+        }
+        // Mock API call
+        console.log('Changing password...');
+        setError('');
+        alert('비밀번호가 변경되었습니다.');
+        onClose();
+    };
+
     return (
-        <div className="modal show" role="dialog" aria-modal="true">
-            <div className="modal-panel" role="document">
+        <div className="modal show" role="dialog">
+            <div className="modal-panel">
                 <div className="flex items-center justify-between mb-2">
                     <h3 className="text-xl font-bold">비밀번호 변경</h3>
-                    <button onClick={onClose} className="text-gray-400 hover:text-white text-2xl" aria-label="닫기"><i className="fas fa-times"></i></button>
+                    <button onClick={onClose} className="text-gray-400 hover:text-white text-2xl"><i className="fas fa-times"></i></button>
                 </div>
-                <p className="text-sm text-gray-400 mb-4">새로운 비밀번호를 설정합니다.</p>
-                <form>
-                    {/* Form fields for password change would go here */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label htmlFor="pw-current" className="label">현재 비밀번호</label>
+                        <input id="pw-current" type="password" className="input" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} required />
+                    </div>
+                    <div>
+                        <label htmlFor="pw-new" className="label">새 비밀번호</label>
+                        <input id="pw-new" type="password" className="input" value={newPassword} onChange={e => setNewPassword(e.target.value)} required />
+                    </div>
+                    <div>
+                        <label htmlFor="pw-confirm" className="label">새 비밀번호 확인</label>
+                        <input id="pw-confirm" type="password" className="input" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+                    </div>
+                    <div>
+                        <label htmlFor="pw-code" className="label">인증 코드</label>
+                        <input id="pw-code" type="text" className="input" value={authCode} onChange={e => setAuthCode(e.target.value)} required />
+                    </div>
+                    {error && <p className="error mt-1">{error}</p>}
                     <div className="flex items-center justify-end gap-3 mt-6">
                         <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg btn-outline hover:bg-gray-800">취소</button>
                         <button type="submit" className="px-4 py-2 rounded-lg btn-primary">변경</button>
@@ -27,13 +59,13 @@ const PasswordChangeModal = ({ isOpen, onClose }) => {
 };
 
 const MyPageAccountSettings = () => {
-    const [formData, setFormData] = useState({
-        name: 'Admin Kim',
-        birthday: '2002-03-01',
-        phone: '010-1234-5678',
-        email: 'kimtcp@seoultech.ac.kr'
-    });
+    const [formData, setFormData] = useState({ name: '', birthday: '', phone: '', email: '' });
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        // Mock fetching data
+        setFormData({ name: 'Admin Kim', birthday: '2002-03-01', phone: '010-1234-5678', email: 'kimtcp@seoultech.ac.kr' });
+    }, []);
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -49,7 +81,7 @@ const MyPageAccountSettings = () => {
         <div className="container mx-auto max-w-4xl p-6">
             <h3 className="text-2xl font-bold gradient-text mb-6">계정 정보 수정</h3>
             <form onSubmit={handleSubmit} className="widget-card rounded-xl p-6">
-                <section aria-labelledby="sec-profile">
+                <section aria-labelledby="sec-profile" className="mb-6">
                     <h4 id="sec-profile" className="text-lg font-bold mb-4">프로필</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
